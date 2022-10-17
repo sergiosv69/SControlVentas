@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class ConnectionMySQL {
     //Definir variables con los nombres correspondientes a la BD
-    private String database_name = "scv_database";  
-    private String user = "root";
-    private String password = "sandro";
-    private String url = "jdbc:mysql://localhost:3306/" + database_name; //establecer conexión
+     private String database_name = "scv_database";  
+    private String user = "adminscv@mecanica-mysql-server2022";
+    private String password = "Admin1234";
+    private String url = "jdbc:mysql://mecanica-mysql-server2022.mysql.database.azure.com:3306/" + database_name; //establecer conexión
     Connection conn =null;
     
     public Connection getConnection(){

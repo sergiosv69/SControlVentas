@@ -23,9 +23,9 @@ public class EmployeesDao {
     public static String full_name_user = "";
     public static String username_user = "";
     public static String address_user = "";
-    public static String rol_user = "";
-    public static String email_user = "";
     public static String telephone_user = "";
+    public static String email_user = "";
+    public static String rol_user = "";
     
     //Método del login
     public Employees loginQuery(String user, String password){
@@ -64,7 +64,7 @@ public class EmployeesDao {
     
     //Registrar Empleado
     public boolean registerEmployeeQuery(Employees employee){
-        String query = "INSERT INTO employees(id, full_name, username, address, telephone, email, password, rol, created"
+        String query = "INSERT INTO employees(id, full_name, username, address, telephone, email, password, rol, created,"
                 + "updated) VALUES(?,?,?,?,?,?,?,?,?,?)";
     //Conocer la fecha y hora exacta del registro
         Timestamp datetime = new Timestamp(new Date().getTime());
@@ -91,7 +91,7 @@ public class EmployeesDao {
     }
     
     //Listar Empleado
-    public List listEmployeeQuery(String value){
+    public List listEmployeesQuery(String value){
         List<Employees> list_employees = new ArrayList();
         String query = "SELECT * FROM employees ORDER BY rol ASC";  //Que lo ordene por el rol de manera ascendente (Todos los empleados)
         String query_search_employee = "SELECT * FROM employees WHERE id LIKE '%" + value + "%'"; //Cuando lo busca por el buscador
@@ -125,9 +125,8 @@ public class EmployeesDao {
      }
     
     //Modificar Empleado
-    public boolean updateEmployeeQuery(Employees employee){
-        String query = "UPDATE employees SET full_name = ?, username = ?, address = ?, telephone = ?, email = ?, rol = ?, updated = ?"
-                + "WHERE id = ?";
+    public boolean updateEmployeesQuery(Employees employee){
+        String query = "UPDATE employees SET full_name = ?, username = ?, address = ?, telephone = ?, email = ?, rol = ?, updated = ? WHERE id = ?";
     //Conocer la fecha y hora exacta del registro
         Timestamp datetime = new Timestamp(new Date().getTime());
         
