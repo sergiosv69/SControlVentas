@@ -11,7 +11,7 @@ public class SettingsController implements MouseListener {
     
     public SettingsController(SystemView views){
         this.views = views;
-        this.views.jPanelProducts.addMouseListener(this);
+        this.views.jLabelProducts.addMouseListener(this);
         this.views.jLabelPurchases.addMouseListener(this);
         this.views.jLabelCustomers.addMouseListener(this);
         this.views.jLabelEmployees.addMouseListener(this);

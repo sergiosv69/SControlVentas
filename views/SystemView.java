@@ -128,9 +128,9 @@ public class SystemView extends javax.swing.JFrame {
         txt_customer_telephone = new javax.swing.JTextField();
         txt_customer_email = new javax.swing.JTextField();
         btn_register_customer = new javax.swing.JButton();
-        btn_confirm_purchase1 = new javax.swing.JButton();
-        btn_remove_purchase1 = new javax.swing.JButton();
-        btn_new_purchase1 = new javax.swing.JButton();
+        btn_update_customer = new javax.swing.JButton();
+        btn_delete_customer = new javax.swing.JButton();
+        btn_cancel_customer = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         customers_table = new javax.swing.JTable();
         jLabel26 = new javax.swing.JLabel();
@@ -734,15 +734,11 @@ public class SystemView extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("Direccion");
 
-        txt_customer_fullname.setEditable(false);
-
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel22.setText("Correo");
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel23.setText("Telefono");
-
-        txt_customer_email.setEditable(false);
 
         btn_register_customer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_register_customer.setText("Registrar");
@@ -752,14 +748,14 @@ public class SystemView extends javax.swing.JFrame {
             }
         });
 
-        btn_confirm_purchase1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_confirm_purchase1.setText("Modificar");
+        btn_update_customer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_update_customer.setText("Modificar");
 
-        btn_remove_purchase1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_remove_purchase1.setText("Eliminar");
+        btn_delete_customer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_delete_customer.setText("Eliminar");
 
-        btn_new_purchase1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_new_purchase1.setText("Cancelar");
+        btn_cancel_customer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_cancel_customer.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -793,10 +789,10 @@ public class SystemView extends javax.swing.JFrame {
                     .addComponent(txt_customer_telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_confirm_purchase1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_update_customer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_register_customer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_remove_purchase1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_new_purchase1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_delete_customer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_cancel_customer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(22, 22, 22))
         );
         jPanel15Layout.setVerticalGroup(
@@ -814,15 +810,15 @@ public class SystemView extends javax.swing.JFrame {
                     .addComponent(jLabel19)
                     .addComponent(txt_customer_fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
-                    .addComponent(btn_confirm_purchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_update_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_customer_email, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(txt_customer_address, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_remove_purchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_delete_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(btn_new_purchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_cancel_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -1398,16 +1394,16 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JPanel Menureportes;
     private javax.swing.JButton btn_add_product_to_buy;
     public javax.swing.JButton btn_calcel_product;
+    public javax.swing.JButton btn_cancel_customer;
     public javax.swing.JButton btn_cancel_employee;
     private javax.swing.JButton btn_cancel_employee2;
     private javax.swing.JButton btn_confirm_purchase;
-    public javax.swing.JButton btn_confirm_purchase1;
+    public javax.swing.JButton btn_delete_customer;
     public javax.swing.JButton btn_delete_employee;
     private javax.swing.JButton btn_delete_employee2;
     public javax.swing.JButton btn_delete_product;
     private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_new_purchase;
-    public javax.swing.JButton btn_new_purchase1;
     private javax.swing.JButton btn_photo;
     public javax.swing.JButton btn_register_customer;
     public javax.swing.JButton btn_register_employee;
@@ -1419,14 +1415,14 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JButton btn_register_employee7;
     public javax.swing.JButton btn_register_product;
     private javax.swing.JButton btn_remove_purchase;
-    public javax.swing.JButton btn_remove_purchase1;
+    public javax.swing.JButton btn_update_customer;
     public javax.swing.JButton btn_update_employee;
     private javax.swing.JButton btn_update_employee2;
     public javax.swing.JButton btn_update_product;
     public javax.swing.JComboBox<Object> cmb_product_category;
     private javax.swing.JComboBox<String> cmb_purchase_supplier;
     public javax.swing.JComboBox<String> cmb_rol;
-    private javax.swing.JTable customers_table;
+    public javax.swing.JTable customers_table;
     public javax.swing.JTable employees_table;
     private javax.swing.JTable employees_table2;
     private javax.swing.JLabel jLabel1;
@@ -1515,7 +1511,7 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JTable products_table;
     private javax.swing.JTable purchases_table;
     private javax.swing.JTable tablecompras;

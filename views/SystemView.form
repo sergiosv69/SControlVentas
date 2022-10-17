@@ -518,6 +518,9 @@
           <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="200" y="100" width="1010" height="580"/>
@@ -1300,10 +1303,10 @@
                               </Group>
                               <EmptySpace pref="106" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btn_confirm_purchase1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btn_update_customer" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btn_register_customer" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btn_remove_purchase1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btn_new_purchase1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btn_delete_customer" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btn_cancel_customer" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
@@ -1325,17 +1328,17 @@
                                   <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txt_customer_fullname" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btn_confirm_purchase1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="btn_update_customer" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="txt_customer_email" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txt_customer_address" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="btn_remove_purchase1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="btn_delete_customer" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="btn_new_purchase1" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="btn_cancel_customer" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace pref="39" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -1372,9 +1375,6 @@
                       </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txt_customer_fullname">
-                      <Properties>
-                        <Property name="editable" type="boolean" value="false"/>
-                      </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
@@ -1406,9 +1406,6 @@
                       </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txt_customer_email">
-                      <Properties>
-                        <Property name="editable" type="boolean" value="false"/>
-                      </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
@@ -1427,7 +1424,7 @@
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btn_confirm_purchase1">
+                    <Component class="javax.swing.JButton" name="btn_update_customer">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="1"/>
@@ -1438,7 +1435,7 @@
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btn_remove_purchase1">
+                    <Component class="javax.swing.JButton" name="btn_delete_customer">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="1"/>
@@ -1449,7 +1446,7 @@
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btn_new_purchase1">
+                    <Component class="javax.swing.JButton" name="btn_cancel_customer">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="1"/>
@@ -1521,6 +1518,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>

@@ -48,7 +48,7 @@ public class CustomersDao {
     public List listCustomerQuery(String value) {
         List<Customers> list_customers = new ArrayList();
         String query = "SELECT * FROM customers";
-        String query_search_customer = "SELECT * FROM customers WHERE id LIKE ´%" + value + "%'";
+        String query_search_customer = "SELECT * FROM customers WHERE id LIKE '%" + value + "%'";
          try{
             conn = cn.getConnection();
             if (value.equalsIgnoreCase("")) { //Si no ingresa nada ejecuta esto, sino el else
