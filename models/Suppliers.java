@@ -5,8 +5,8 @@ public class Suppliers {
     private int id;
     private String name;
     private String description;
-    private String address;
     private String telephone;
+    private String address;
     private String email;
     private String city;
     private String created;
@@ -15,12 +15,12 @@ public class Suppliers {
     public Suppliers() {
     }
 
-    public Suppliers(int id, String name, String description, String address, String telephone, String email, String city, String created, String updated) {
+    public Suppliers(int id, String name, String description, String telephone, String address, String email, String city, String created, String updated) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.address = address;
         this.telephone = telephone;
+        this.address = address;
         this.email = email;
         this.city = city;
         this.created = created;
@@ -51,20 +51,20 @@ public class Suppliers {
         this.description = description;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getTelephone() {
         return telephone;
     }
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getEmail() {
@@ -98,6 +98,8 @@ public class Suppliers {
     public void setUpdated(String updated) {
         this.updated = updated;
     }
+
+    
     
     
     
