@@ -21,8 +21,7 @@ public class ProductsDao {
     
     //registrar Producto
     public boolean registerProductQuery(Products product){
-        String query = "INSERT INTO products (code, name, description, unit_price, created, updated, category_id)"
-                + "VALUES (?,?,?,?,?,?,?)";
+        String query = "INSERT INTO products (code, name, description, unit_price, created, updated, category_id) VALUES (?,?,?,?,?,?,?)";
         
         Timestamp datetime = new Timestamp (new Date().getTime());
         try{

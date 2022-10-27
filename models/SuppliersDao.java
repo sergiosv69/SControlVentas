@@ -20,8 +20,7 @@ public class SuppliersDao {
 
     //Registrar proveedor
     public boolean registerSupplierQuery(Suppliers supplier) {
-        String query = "INSET INTO suppliers (name, description, address, telephone, email, city, created, updated)"
-                + "VALUES (?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO suppliers ( name, description, telephone, address , email, city, created, updated) VALUES (?,?,?,?,?,?,?,?)";
 
         Timestamp datetime = new Timestamp(new Date().getTime());
 
@@ -30,8 +29,8 @@ public class SuppliersDao {
             pst = conn.prepareStatement(query);
             pst.setString(1, supplier.getName());
             pst.setString(2, supplier.getDescription());
-            pst.setString(3, supplier.getAddress());
-            pst.setString(4, supplier.getTelephone());
+            pst.setString(3, supplier.getTelephone());
+            pst.setString(4, supplier.getAddress());            
             pst.setString(5, supplier.getEmail());
             pst.setString(6, supplier.getCity());
             pst.setTimestamp(7, datetime);
