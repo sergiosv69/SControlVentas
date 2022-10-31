@@ -1,9 +1,12 @@
 package views;
 
+import controllers.CategoriesController;
 import controllers.CustomersController;
 import controllers.EmployeesController;
 import controllers.SettingsController;
 import controllers.SuppliersController;
+import models.Categories;
+import models.CategoriesDao;
 import models.Customers;
 import models.CustomersDao;
 import models.Employees;
@@ -28,6 +31,10 @@ public class SystemView extends javax.swing.JFrame {
     //Compras 
     //Purchases purchase = new Purchases();
     //PurchasesDao purchaseDao = new PurchaseDao();
+    
+    //Categorias
+    Categories category = new Categories();
+    CategoriesDao categoriesDao = new CategoriesDao();
 
     public SystemView() {
         initComponents();
@@ -54,6 +61,10 @@ public class SystemView extends javax.swing.JFrame {
         
         //Controlador de compras
         //PurchasesController purchase_section = new PurchasesController(purchase, purchaseDao, this);
+        
+        //Controlador de categorias
+        CategoriesController category_section = new CategoriesController(category, categoriesDao, this);
+        category_section.listAllCategories();
     }
 
     @SuppressWarnings("unchecked")
@@ -218,9 +229,9 @@ public class SystemView extends javax.swing.JFrame {
         btn_update_category = new javax.swing.JButton();
         btn_delete_category = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tbl_category = new javax.swing.JTable();
+        categories_table = new javax.swing.JTable();
         jLabel38 = new javax.swing.JLabel();
-        txt_category_search = new javax.swing.JTextField();
+        txt_search_category = new javax.swing.JTextField();
         Menureportes = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -1255,10 +1266,10 @@ public class SystemView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txt_category_name, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_delete_category)
-                    .addComponent(btn_update_category)
-                    .addComponent(btn_register_category))
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_update_category, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_register_category, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_delete_category, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
         );
         jPanel25Layout.setVerticalGroup(
@@ -1285,7 +1296,7 @@ public class SystemView extends javax.swing.JFrame {
 
         jPanel24.add(jPanel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 460, 360));
 
-        tbl_category.setModel(new javax.swing.table.DefaultTableModel(
+        categories_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1301,14 +1312,14 @@ public class SystemView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(tbl_category);
+        jScrollPane6.setViewportView(categories_table);
 
         jPanel24.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 440, 290));
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel38.setText("Buscar");
         jPanel24.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, -1, -1));
-        jPanel24.add(txt_category_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 120, 310, 30));
+        jPanel24.add(txt_search_category, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 120, 310, 30));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1580,6 +1591,7 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JButton btn_update_employee;
     public javax.swing.JButton btn_update_product;
     public javax.swing.JButton btn_update_suppliers;
+    public javax.swing.JTable categories_table;
     public javax.swing.JComboBox<Object> cmb_product_category;
     private javax.swing.JComboBox<String> cmb_purchase_supplier;
     public javax.swing.JComboBox<String> cmb_rol;
@@ -1689,11 +1701,9 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JTable purchases_table;
     public javax.swing.JTable suppliers_table;
     private javax.swing.JTable tablecompras;
-    public javax.swing.JTable tbl_category;
     public javax.swing.JTextField txt_address_profile;
     public javax.swing.JTextField txt_category_id;
     public javax.swing.JTextField txt_category_name;
-    public javax.swing.JTextField txt_category_search;
     public javax.swing.JTextField txt_customer_address;
     public javax.swing.JTextField txt_customer_email;
     public javax.swing.JTextField txt_customer_fullname;
@@ -1724,6 +1734,7 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JTextField txt_purchase_product_name;
     private javax.swing.JTextField txt_purchase_subtotal;
     private javax.swing.JTextField txt_purchase_total_to_pay;
+    public javax.swing.JTextField txt_search_category;
     public javax.swing.JTextField txt_search_customer;
     public javax.swing.JTextField txt_search_employee;
     public javax.swing.JTextField txt_search_product;
