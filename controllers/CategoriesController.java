@@ -13,7 +13,7 @@ import models.Categories;
 import models.CategoriesDao;
 import models.DynamicCombobox;
 import static models.EmployeesDao.rol_user;
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+//import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import views.SystemView;
 
 public class CategoriesController implements ActionListener, MouseListener, KeyListener {
@@ -38,7 +38,7 @@ public class CategoriesController implements ActionListener, MouseListener, KeyL
         this.views.txt_search_category.addKeyListener(this);
         this.views.jLabelCategories.addMouseListener(this);
         getCategoryName();
-        AutoCompleteDecorator.decorate(views.cmb_product_category);
+        //AutoCompleteDecorator.decorate(views.cmb_product_category);
     }
 
     @Override
