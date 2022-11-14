@@ -111,12 +111,6 @@ public Products(int id, int code, String name, String description, double unit_p
 
     public void setCategory_name(String category_name) {
         this.category_name = category_name;
-    }
-
-
-
-
-
-
+    }    
 
 }

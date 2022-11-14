@@ -7,6 +7,7 @@ import controllers.CategoriesController;
 import controllers.CustomersController;
 import controllers.EmployeesController;
 import controllers.ProductsController;
+import controllers.PurchasesController;
 import controllers.SettingsController;
 import controllers.SuppliersController;
 import java.io.InputStream;
@@ -20,8 +21,12 @@ import models.Customers;
 import models.CustomersDao;
 import models.Employees;
 import models.EmployeesDao;
+import static models.EmployeesDao.full_name_user;
+import static models.EmployeesDao.rol_user;
 import models.Products;
 import models.ProductsDao;
+import models.Purchases;
+import models.PurchasesDao;
 import models.Suppliers;
 import models.SuppliersDao;
 
@@ -30,26 +35,26 @@ public class SystemView extends javax.swing.JFrame {
     //Clientes 
     Customers customer = new Customers();
     CustomersDao customersDao = new CustomersDao();
-    
+
     //proveedores
     Suppliers supplier = new Suppliers();
     SuppliersDao supplierDao = new SuppliersDao();
-    
+
     //Empleados
     Employees employee = new Employees();
     EmployeesDao employeesDao = new EmployeesDao();
-    
+
     //Compras 
-    //Purchases purchase = new Purchases();
-    //PurchasesDao purchaseDao = new PurchaseDao();
-    
+    Purchases purchase = new Purchases();
+    PurchasesDao purchaseDao = new PurchasesDao();
+
     //Categorias
     Categories category = new Categories();
     CategoriesDao categoriesDao = new CategoriesDao();
-    
-     //Productos
-        Products product = new Products();
-        ProductsDao productDao = new ProductsDao();
+
+    //Productos
+    Products product = new Products();
+    ProductsDao productDao = new ProductsDao();
 
     public SystemView() {
         initComponents();
@@ -57,6 +62,7 @@ public class SystemView extends javax.swing.JFrame {
         setResizable(false); //PARA QUE NO MODIFIQUEN EL TAMAÑO DE LA VENTANA
         setTitle("Panel de administración");  //TITULO A LA VENTANA
         setLocationRelativeTo(null); //CENTRADO
+        titleInterface();
 
         //controlador del Settings
         SettingsController setting = new SettingsController(this);
@@ -65,24 +71,31 @@ public class SystemView extends javax.swing.JFrame {
 
         //Controlador de clientes
         CustomersController customer_account = new CustomersController(customer, customersDao, this);
-        
+
         //Controlador de empleados
         EmployeesController employee_account = new EmployeesController(employee, employeesDao, this);
         employee_account.listAllEmployees();
-        
+
         //controlador de proveedores
         SuppliersController supplier_account = new SuppliersController(supplier, supplierDao, this);
         supplier_account.listAllSuppliers();
-        
+
         //Controlador de compras
-        //PurchasesController purchase_section = new PurchasesController(purchase, purchaseDao, this);
-        
+        PurchasesController purchase_section = new PurchasesController(purchase, purchaseDao, this);
+
         //Controlador de categorias
         CategoriesController category_section = new CategoriesController(category, categoriesDao, this);
         category_section.listAllCategories();
-        
-         //Controlador de Productos
-        ProductsController product_section = new ProductsController(product, productDao, this); 
+
+        //Controlador de Productos
+        ProductsController product_section = new ProductsController(product, productDao, this);
+    }
+
+    public String titleInterface() {
+        setTitle("Panel - " + rol_user);
+        label_name_employee.setText(full_name_user);
+        label_name_rol.setText(rol_user);
+        return rol_user.trim();
     }
 
     @SuppressWarnings("unchecked")
@@ -254,7 +267,7 @@ public class SystemView extends javax.swing.JFrame {
         Menureportes = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tablecompras = new javax.swing.JTable();
+        table_all_purchases = new javax.swing.JTable();
         Menuconfiguracion = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
@@ -1387,7 +1400,7 @@ public class SystemView extends javax.swing.JFrame {
         jLabel21.setText("COMPRAS REALIZADAS");
         Menureportes.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 280, 20));
 
-        tablecompras.setModel(new javax.swing.table.DefaultTableModel(
+        table_all_purchases.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1403,7 +1416,7 @@ public class SystemView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(tablecompras);
+        jScrollPane4.setViewportView(table_all_purchases);
 
         Menureportes.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 740, 180));
 
@@ -1569,59 +1582,57 @@ public class SystemView extends javax.swing.JFrame {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
 
-    String leerid = txt_customer_id.getText();
- 
-    
-    if(leerid.length() == 8){
-        String enlacedni = "https://dniruc.apisperu.com/api/v1/dni/"+leerid+"?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InNhYmlub3Zhc3F1ZXpzZXJnaW9hbmRlcnNvbkBnbWFpbC5jb20ifQ.MIJGPcxZ3EObiB7oMe09JfyZKXouxZnBHrzG-8LFTQc";
-        try {
-            URL url = new URL(enlacedni);
-            URLConnection request = url.openConnection();
-            request.connect();
+        String leerid = txt_customer_id.getText();
 
-            JsonParser jp = new JsonParser();
-            JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-            JsonObject rootobj = root.getAsJsonObject();
+        if (leerid.length() == 8) {
+            String enlacedni = "https://dniruc.apisperu.com/api/v1/dni/" + leerid + "?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InNhYmlub3Zhc3F1ZXpzZXJnaW9hbmRlcnNvbkBnbWFpbC5jb20ifQ.MIJGPcxZ3EObiB7oMe09JfyZKXouxZnBHrzG-8LFTQc";
+            try {
+                URL url = new URL(enlacedni);
+                URLConnection request = url.openConnection();
+                request.connect();
 
-            String apellido_paterno = rootobj.get("apellidoPaterno").getAsString();
-            String apellido_materno = rootobj.get("apellidoMaterno").getAsString();
-            String nombres = rootobj.get("nombres").getAsString();
+                JsonParser jp = new JsonParser();
+                JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+                JsonObject rootobj = root.getAsJsonObject();
 
-            txt_customer_fullname.setText("");
-            txt_customer_fullname.setText(apellido_paterno + " " + apellido_materno + " " + nombres);
+                String apellido_paterno = rootobj.get("apellidoPaterno").getAsString();
+                String apellido_materno = rootobj.get("apellidoMaterno").getAsString();
+                String nombres = rootobj.get("nombres").getAsString();
 
-        }catch (Exception ex) {
-            System.out.println(ex.getMessage());
+                txt_customer_fullname.setText("");
+                txt_customer_fullname.setText(apellido_paterno + " " + apellido_materno + " " + nombres);
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+
+        } else if (leerid.length() == 11) {
+            String enlaceruc = "https://dniruc.apisperu.com/api/v1/ruc/" + leerid + "?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InNhYmlub3Zhc3F1ZXpzZXJnaW9hbmRlcnNvbkBnbWFpbC5jb20ifQ.MIJGPcxZ3EObiB7oMe09JfyZKXouxZnBHrzG-8LFTQc";
+            try {
+                URL url = new URL(enlaceruc);
+                URLConnection request = url.openConnection();
+                request.connect();
+
+                JsonParser jp = new JsonParser();
+                JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+                JsonObject rootobj = root.getAsJsonObject();
+
+                String razon_social = rootobj.get("razonSocial").getAsString();
+                String direccion = rootobj.get("direccion").getAsString();
+
+                txt_customer_fullname.setText("");
+                txt_customer_address.setText("");
+                txt_customer_fullname.setText(razon_social);
+                txt_customer_address.setText(direccion);
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Consulta inválida");
         }
-    
-    }else if(leerid.length() == 11){
-        String enlaceruc = "https://dniruc.apisperu.com/api/v1/ruc/" + leerid + "?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InNhYmlub3Zhc3F1ZXpzZXJnaW9hbmRlcnNvbkBnbWFpbC5jb20ifQ.MIJGPcxZ3EObiB7oMe09JfyZKXouxZnBHrzG-8LFTQc";
-        try {
-            URL url = new URL(enlaceruc);
-            URLConnection request = url.openConnection();
-            request.connect();
 
-            JsonParser jp = new JsonParser();
-            JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-            JsonObject rootobj = root.getAsJsonObject();
 
-            String razon_social = rootobj.get("razonSocial").getAsString();
-            String direccion = rootobj.get("direccion").getAsString();
-
-            txt_customer_fullname.setText("");
-            txt_customer_address.setText("");
-            txt_customer_fullname.setText(razon_social);
-            txt_customer_address.setText(direccion);
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-    }else{
-       JOptionPane.showMessageDialog(null, "Consulta inválida"); 
-    }
-    
-        
-        
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     /**
@@ -1660,15 +1671,15 @@ public class SystemView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Menuconfiguracion;
+    public javax.swing.JPanel Menuconfiguracion;
     private javax.swing.JPanel Menureportes;
-    private javax.swing.JButton btn_add_product_to_buy;
+    public javax.swing.JButton btn_add_product_to_buy;
     private javax.swing.JButton btn_buscar;
     public javax.swing.JButton btn_calcel_product;
     public javax.swing.JButton btn_cancel_customer;
     public javax.swing.JButton btn_cancel_employee;
     public javax.swing.JButton btn_cancel_suppliers;
-    private javax.swing.JButton btn_confirm_purchase;
+    public javax.swing.JButton btn_confirm_purchase;
     public javax.swing.JButton btn_delete_category;
     public javax.swing.JButton btn_delete_customer;
     public javax.swing.JButton btn_delete_employee;
@@ -1676,14 +1687,14 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JButton btn_delete_suppliers;
     private javax.swing.JButton btn_logout;
     public javax.swing.JButton btn_modify_data;
-    private javax.swing.JButton btn_new_purchase;
+    public javax.swing.JButton btn_new_purchase;
     private javax.swing.JButton btn_photo;
     public javax.swing.JButton btn_register_category;
     public javax.swing.JButton btn_register_customer;
     public javax.swing.JButton btn_register_employee;
     public javax.swing.JButton btn_register_product;
     public javax.swing.JButton btn_register_suppliers;
-    private javax.swing.JButton btn_remove_purchase;
+    public javax.swing.JButton btn_remove_purchase;
     public javax.swing.JButton btn_update_category;
     public javax.swing.JButton btn_update_customer;
     public javax.swing.JButton btn_update_employee;
@@ -1691,7 +1702,7 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JButton btn_update_suppliers;
     public javax.swing.JTable categories_table;
     public javax.swing.JComboBox<Object> cmb_product_category;
-    private javax.swing.JComboBox<String> cmb_purchase_supplier;
+    public javax.swing.JComboBox<Object> cmb_purchase_supplier;
     public javax.swing.JComboBox<String> cmb_rol;
     public javax.swing.JComboBox<String> cmb_suppliers_city;
     public javax.swing.JTable customers_table;
@@ -1762,7 +1773,7 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
+    public javax.swing.JPanel jPanel16;
     public javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
@@ -1796,9 +1807,9 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JLabel label_name_employee;
     public javax.swing.JLabel label_name_rol;
     public javax.swing.JTable products_table;
-    private javax.swing.JTable purchases_table;
+    public javax.swing.JTable purchases_table;
     public javax.swing.JTable suppliers_table;
-    private javax.swing.JTable tablecompras;
+    public javax.swing.JTable table_all_purchases;
     public javax.swing.JTextField txt_address_profile;
     public javax.swing.JTextField txt_category_id;
     public javax.swing.JTextField txt_category_name;
@@ -1825,13 +1836,13 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txt_product_id;
     public javax.swing.JTextField txt_product_name;
     public javax.swing.JTextField txt_product_unit_price;
-    private javax.swing.JTextField txt_purchase_amount;
-    private javax.swing.JTextField txt_purchase_id;
-    private javax.swing.JTextField txt_purchase_price;
-    private javax.swing.JTextField txt_purchase_product_code;
-    private javax.swing.JTextField txt_purchase_product_name;
-    private javax.swing.JTextField txt_purchase_subtotal;
-    private javax.swing.JTextField txt_purchase_total_to_pay;
+    public javax.swing.JTextField txt_purchase_amount;
+    public javax.swing.JTextField txt_purchase_id;
+    public javax.swing.JTextField txt_purchase_price;
+    public javax.swing.JTextField txt_purchase_product_code;
+    public javax.swing.JTextField txt_purchase_product_name;
+    public javax.swing.JTextField txt_purchase_subtotal;
+    public javax.swing.JTextField txt_purchase_total_to_pay;
     public javax.swing.JTextField txt_search_category;
     public javax.swing.JTextField txt_search_customer;
     public javax.swing.JTextField txt_search_employee;

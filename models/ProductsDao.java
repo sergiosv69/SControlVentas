@@ -30,7 +30,7 @@ public class ProductsDao {
             pst.setInt(1, product.getCode());
             pst.setString(2, product.getName());
             pst.setString(3, product.getDescription());
-            pst.setDouble(4, product.getUnit_price());
+            pst.setDouble(4, product.getUnit_price());         
             pst.setTimestamp(5, datetime);
             pst.setTimestamp(6, datetime);
             pst.setInt(7, product.getCategory_id());
@@ -181,7 +181,7 @@ public class ProductsDao {
             rs = pst.executeQuery();
             
             if(rs.next()){
-                product.setProduct_quantity(rs.getInt("product_quantify"));
+                product.setProduct_quantity(rs.getInt("product_quantity"));
             }
             
         }catch(SQLException e){
@@ -192,7 +192,7 @@ public class ProductsDao {
     
     //ActualizarStock
     public boolean updateStockQuery(int amount, int product_id){
-        String query = "UPDATE products SET product_quantify = ? WHERE id ?";
+        String query = "UPDATE products SET product_quantity = ? WHERE id = ?";
         try{
             conn = cn.getConnection();
             pst = conn.prepareStatement(query);

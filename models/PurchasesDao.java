@@ -40,25 +40,22 @@ public class PurchasesDao {
     }
 
     //Metodo para registrar los detalles de la compra
-    public boolean registerPurchaseDetailQuey(int purchase_id, double purchase_price, int purchase_amount,
-            double purchase_subtotal, int product_id) {
-        String query = " INSERT INTO purchase_details(purchase_id, purchase_price, purchase_amount,"
-                + "purchase_subtotal,purchase_date, product_id) VALUES(?,?,?,?,?,?)";
+    public boolean registerPurchaseDetailQuey(int purchase_id, int purchase_amount, double purchase_price, double purchase_subtotal, int product_id) {
+        String query = " INSERT INTO purchase_details (purchase_id, purchase_price, purchase_amount, purchase_subtotal, product_id) VALUES(?,?,?,?,?)";
 
         Timestamp datetime = new Timestamp(new Date().getTime());
         try {
             conn = cn.getConnection();
             pst = conn.prepareStatement(query);
             pst.setInt(1, purchase_id);
-            pst.setDouble(2, purchase_price);
-            pst.setInt(3, purchase_amount);
+            pst.setInt(2, purchase_amount);
+            pst.setDouble(3, purchase_price);
             pst.setDouble(4, purchase_subtotal);
-            pst.setTimestamp(5, datetime);
-            pst.setInt(6, product_id);
+            pst.setInt(5, product_id);
             pst.execute(); //ejecutamos la consulta
             return true;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al registrar los detalles de la compra");
+            JOptionPane.showMessageDialog(null, "Error al registrar los detalles de la compra" + e);
             return false;
         }
     }
@@ -83,8 +80,7 @@ public class PurchasesDao {
     //Listar todas las compras realizadas 
     public List listAllPurchasesQuery() {
         List<Purchases> list_purchase = new ArrayList();
-        String query = "SELECT pu.*, su.name AS supplier_name FROM purchases pu, suppliers su "
-                + "WHERE pu.supplier_id = su.id ORDER BY pu.id ASC";
+        String query = "SELECT pu.*, su.name AS supplier_name FROM purchases pu, suppliers su WHERE pu.supplier_id = su.id ORDER BY pu.id ASC";
 
         try {
             conn = cn.getConnection();
