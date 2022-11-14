@@ -71,6 +71,7 @@ public class SystemView extends javax.swing.JFrame {
 
         //Controlador de clientes
         CustomersController customer_account = new CustomersController(customer, customersDao, this);
+        customer_account.listAllCustomers();
 
         //Controlador de empleados
         EmployeesController employee_account = new EmployeesController(employee, employeesDao, this);
@@ -82,6 +83,7 @@ public class SystemView extends javax.swing.JFrame {
 
         //Controlador de compras
         PurchasesController purchase_section = new PurchasesController(purchase, purchaseDao, this);
+        purchase_section.listAllPurchases();
 
         //Controlador de categorias
         CategoriesController category_section = new CategoriesController(category, categoriesDao, this);
@@ -694,6 +696,11 @@ public class SystemView extends javax.swing.JFrame {
 
         btn_confirm_purchase.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_confirm_purchase.setText("Comprar");
+        btn_confirm_purchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_confirm_purchaseActionPerformed(evt);
+            }
+        });
 
         btn_remove_purchase.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_remove_purchase.setText("Eliminar");
@@ -1398,7 +1405,7 @@ public class SystemView extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("COMPRAS REALIZADAS");
-        Menureportes.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 280, 20));
+        Menureportes.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 280, 20));
 
         table_all_purchases.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1634,6 +1641,10 @@ public class SystemView extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_confirm_purchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirm_purchaseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_confirm_purchaseActionPerformed
 
     /**
      * @param args the command line arguments

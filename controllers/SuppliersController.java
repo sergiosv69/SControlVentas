@@ -67,7 +67,8 @@ public class SuppliersController implements ActionListener, MouseListener, KeyLi
 
                 if (suppliersDao.registerSupplierQuery(supplier)) {
                     cleanTable();
-                    listAllSuppliers();
+                    cleanFields();
+                    listAllSuppliers();                    
                     JOptionPane.showMessageDialog(null, "Proveedor registrado con exito");
                 } else {
                     JOptionPane.showMessageDialog(null, "Ha ocurrido un error al registrar el proveedor");

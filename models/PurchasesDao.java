@@ -108,7 +108,7 @@ public class PurchasesDao {
         String query = "SELECT pu.created, pude.purchase_price, pude.purchase_amount, pude.purchase_subtotal, su.name AS supplier_name,\n"
                 + "pro.name AS product_name, em.full_name FROM purchases pu INNER JOIN purchase_details pude ON pu.id = pude.purchase_id\n"
                 + "INNER JOIN products pro ON pude.product_id = pro.id INNER JOIN suppliers su ON pu.supplier_id = su.id\n"
-                + "INNER JOIN employees em ON pu.employe_id = em.id WHERE pu.id = ?";
+                + "INNER JOIN employees em ON pu.employee_id = em.id WHERE pu.id = ?";
 
         try { //llamamos la conexion
             conn = cn.getConnection();
