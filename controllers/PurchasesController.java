@@ -17,6 +17,7 @@ import models.Products;
 import models.ProductsDao;
 import models.Purchases;
 import models.PurchasesDao;
+import views.Print;
 import views.SystemView;
 
 public class PurchasesController implements KeyListener, ActionListener, MouseListener {
@@ -145,6 +146,8 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
             cleanTableTemp();
             JOptionPane.showMessageDialog(null, "Compra generada con éxito");
             cleanFieldsPurchases();
+            Print print = new Print(purchase_id);
+            print.setVisible(true);
         }
     }
 
