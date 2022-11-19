@@ -229,7 +229,7 @@ public class EmployeesController implements ActionListener, MouseListener, KeyLi
                 JOptionPane.showMessageDialog(null, "No tienes permiso de administrador para acceder a esta vista");
 
             }
-        }
+        } 
     }
 
     @Override

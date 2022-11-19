@@ -130,9 +130,9 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
         if (purchaseDao.registerPurchaseQuery(getIdSupplier, emplyee_id, total)) {
             int purchase_id = purchaseDao.purchaseId();
             for (int i = 0; i < views.purchases_table.getRowCount(); i++) {
-                int product_id = Integer.parseInt(views.purchases_table.getValueAt(i,0).toString());
-                int purchase_amount = Integer.parseInt(views.purchases_table.getValueAt(i,2).toString());
-                double purchase_price = Double.parseDouble(views.purchases_table.getValueAt(i,3).toString());
+                int product_id = Integer.parseInt(views.purchases_table.getValueAt(i, 0).toString());
+                int purchase_amount = Integer.parseInt(views.purchases_table.getValueAt(i, 2).toString());
+                double purchase_price = Double.parseDouble(views.purchases_table.getValueAt(i, 3).toString());
                 double purchase_subtotal = purchase_price * purchase_amount;
 
                 //Registrar detalles de la compra
@@ -245,7 +245,7 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == views.jLabelPurchases) {
-            if (rol.equals("Administrador")) {
+            if (rol.equals("Administrador") || rol.equals("Empleado")) {
                 views.jTabbedPane1.setSelectedIndex(1);
                 cleanTable();
 
@@ -254,14 +254,24 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
                 views.jLabelPurchases.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No tiene privilegios de Administrador para ingresar a esta vista");
             }
-        }else if (e.getSource() == views.jLabelReports) {
+        } else if (e.getSource() == views.jLabelReports) {
             views.jTabbedPane1.setSelectedIndex(6);
             cleanTable();
             listAllPurchases();
-        }else if (e.getSource() == views.jLabelSettings) {
-            views.jTabbedPane1.setSelectedIndex(7);
-        } 
-        
+        } else if (e.getSource() == views.jLabelSettings) {
+            //Solo para administrador
+            if (rol.equals("Administrador")) {
+                views.jTabbedPane1.setSelectedIndex(7);
+                //Limpiar tabla
+            } else {
+                //si no es admi
+                views.jTabbedPane1.setEnabledAt(7, false);
+                views.jLabelSettings.setEnabled(false);
+                JOptionPane.showMessageDialog(null, "No tienes permiso de administrador para acceder a esta vista");
+
+            }
+        }
+
     }
 
     @Override

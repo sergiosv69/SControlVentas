@@ -223,6 +223,7 @@ public class SystemView extends javax.swing.JFrame {
         cmb_rol = new javax.swing.JComboBox<>();
         txt_employee_email = new javax.swing.JTextField();
         txt_employee_password = new javax.swing.JPasswordField();
+        btn_consultar_employee = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         employees_table = new javax.swing.JTable();
         jLabel27 = new javax.swing.JLabel();
@@ -523,6 +524,18 @@ public class SystemView extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Id:");
 
+        txt_product_name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_product_nameKeyTyped(evt);
+            }
+        });
+
+        txt_product_unit_price.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_product_unit_priceKeyTyped(evt);
+            }
+        });
+
         txt_product_id.setEditable(false);
         txt_product_id.setEnabled(false);
 
@@ -667,6 +680,12 @@ public class SystemView extends javax.swing.JFrame {
 
         txt_purchase_product_name.setEditable(false);
 
+        txt_purchase_amount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_purchase_amountKeyTyped(evt);
+            }
+        });
+
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Subtotal:");
 
@@ -678,6 +697,12 @@ public class SystemView extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setText("Total a pagar:");
+
+        txt_purchase_price.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_purchase_priceKeyTyped(evt);
+            }
+        });
 
         txt_purchase_subtotal.setEditable(false);
 
@@ -831,11 +856,25 @@ public class SystemView extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("Direccion:");
 
+        txt_customer_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_customer_idKeyTyped(evt);
+            }
+        });
+
+        txt_customer_fullname.setEditable(false);
+
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel22.setText("Correo:");
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel23.setText("Telefono");
+
+        txt_customer_telephone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_customer_telephoneKeyTyped(evt);
+            }
+        });
 
         btn_register_customer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_register_customer.setText("Registrar");
@@ -977,20 +1016,18 @@ public class SystemView extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1005, Short.MAX_VALUE)
+            .addGap(0, 1013, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 1005, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 1007, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 6, Short.MAX_VALUE)))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
+            .addGap(0, 564, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -1013,6 +1050,14 @@ public class SystemView extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel33.setText("Rol:");
 
+        txt_employee_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_employee_idKeyTyped(evt);
+            }
+        });
+
+        txt_employee_fullname.setEditable(false);
+
         jLabel34.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel34.setText("Teléfono:");
 
@@ -1024,6 +1069,12 @@ public class SystemView extends javax.swing.JFrame {
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel37.setText("Contraseña:");
+
+        txt_employee_telephone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_employee_telephoneKeyTyped(evt);
+            }
+        });
 
         btn_register_employee.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_register_employee.setText("Registrar");
@@ -1045,6 +1096,14 @@ public class SystemView extends javax.swing.JFrame {
         cmb_rol.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmb_rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Empleado" }));
 
+        btn_consultar_employee.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_consultar_employee.setText("Consultar");
+        btn_consultar_employee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_consultar_employeeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
@@ -1055,70 +1114,83 @@ public class SystemView extends javax.swing.JFrame {
                     .addComponent(jLabel32)
                     .addComponent(jLabel33)
                     .addComponent(jLabel30)
-                    .addComponent(jLabel31))
+                    .addComponent(jLabel31)
+                    .addComponent(jLabel35))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_employee_username)
-                    .addComponent(txt_employee_fullname)
-                    .addComponent(cmb_rol, 0, 165, Short.MAX_VALUE)
-                    .addComponent(txt_employee_id))
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel36)
-                            .addComponent(jLabel37)))
-                    .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel35)
-                            .addComponent(jLabel34))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_employee_telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_employee_address, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_employee_email, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_employee_password, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84)
+                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel19Layout.createSequentialGroup()
+                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_employee_username)
+                                .addComponent(cmb_rol, 0, 198, Short.MAX_VALUE)
+                                .addComponent(txt_employee_address))
+                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel19Layout.createSequentialGroup()
+                                    .addGap(45, 45, 45)
+                                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel36)
+                                        .addComponent(jLabel37)))
+                                .addGroup(jPanel19Layout.createSequentialGroup()
+                                    .addGap(37, 37, 37)
+                                    .addComponent(jLabel34)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_employee_email, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                                .addComponent(txt_employee_telephone)
+                                .addComponent(txt_employee_password)))
+                        .addComponent(txt_employee_fullname))
+                    .addComponent(txt_employee_id, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_register_employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_update_employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_delete_employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_cancel_employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_cancel_employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_consultar_employee, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(37, 37, 37))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(4, 4, 4)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
-                    .addComponent(txt_employee_id, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel35)
-                    .addComponent(txt_employee_address, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_register_employee, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(txt_employee_id, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
-                    .addComponent(txt_employee_fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_employee_fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
-                    .addComponent(btn_update_employee, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_employee_telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_employee_telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35)
+                    .addComponent(txt_employee_address, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
                     .addComponent(txt_employee_username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel36)
-                    .addComponent(btn_delete_employee, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_employee_email, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
                     .addComponent(jLabel37)
-                    .addComponent(btn_cancel_employee, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmb_rol, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_employee_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_consultar_employee, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_register_employee, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_update_employee, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_delete_employee, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_cancel_employee, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
 
         jPanel18.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 20, 920, 310));
@@ -1152,20 +1224,18 @@ public class SystemView extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1005, Short.MAX_VALUE)
+            .addGap(0, 1010, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 1005, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 1007, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 3, Short.MAX_VALUE)))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
+            .addGap(0, 558, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -1188,6 +1258,12 @@ public class SystemView extends javax.swing.JFrame {
         jLabel49.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel49.setText("Correo:");
         jPanel23.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+
+        txt_suppliers_telephone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_suppliers_telephoneKeyTyped(evt);
+            }
+        });
         jPanel23.add(txt_suppliers_telephone, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 165, 30));
 
         txt_suppliers_id.setEditable(false);
@@ -1402,8 +1478,8 @@ public class SystemView extends javax.swing.JFrame {
         Menureportes.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Menureportes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel21.setBackground(new java.awt.Color(255, 255, 255));
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("COMPRAS REALIZADAS");
         Menureportes.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 280, 20));
 
@@ -1425,7 +1501,7 @@ public class SystemView extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(table_all_purchases);
 
-        Menureportes.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 740, 180));
+        Menureportes.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 910, 380));
 
         jTabbedPane1.addTab("Reportes", Menureportes);
 
@@ -1646,6 +1722,103 @@ public class SystemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_confirm_purchaseActionPerformed
 
+    private void btn_consultar_employeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultar_employeeActionPerformed
+        String leerid = txt_employee_id.getText();
+
+        if (leerid.length() == 8) {
+            String enlacedni = "https://dniruc.apisperu.com/api/v1/dni/" + leerid + "?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InNhYmlub3Zhc3F1ZXpzZXJnaW9hbmRlcnNvbkBnbWFpbC5jb20ifQ.MIJGPcxZ3EObiB7oMe09JfyZKXouxZnBHrzG-8LFTQc";
+            try {
+                URL url = new URL(enlacedni);
+                URLConnection request = url.openConnection();
+                request.connect();
+
+                JsonParser jp = new JsonParser();
+                JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+                JsonObject rootobj = root.getAsJsonObject();
+
+                String apellido_paterno = rootobj.get("apellidoPaterno").getAsString();
+                String apellido_materno = rootobj.get("apellidoMaterno").getAsString();
+                String nombres = rootobj.get("nombres").getAsString();
+
+                txt_employee_fullname.setText("");
+                txt_employee_fullname.setText(apellido_paterno + " " + apellido_materno + " " + nombres);
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+
+        } else if (leerid.length() == 11) {
+            String enlaceruc = "https://dniruc.apisperu.com/api/v1/ruc/" + leerid + "?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InNhYmlub3Zhc3F1ZXpzZXJnaW9hbmRlcnNvbkBnbWFpbC5jb20ifQ.MIJGPcxZ3EObiB7oMe09JfyZKXouxZnBHrzG-8LFTQc";
+            try {
+                URL url = new URL(enlaceruc);
+                URLConnection request = url.openConnection();
+                request.connect();
+
+                JsonParser jp = new JsonParser();
+                JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+                JsonObject rootobj = root.getAsJsonObject();
+
+                String razon_social = rootobj.get("razonSocial").getAsString();
+                String direccion = rootobj.get("direccion").getAsString();
+
+                txt_employee_fullname.setText("");
+                txt_employee_address.setText("");
+                txt_employee_fullname.setText(razon_social);
+                txt_employee_address.setText(direccion);
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Consulta inválida");
+        }
+    }//GEN-LAST:event_btn_consultar_employeeActionPerformed
+
+    private void txt_customer_idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_customer_idKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_txt_customer_idKeyTyped
+
+    private void txt_employee_idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_employee_idKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_txt_employee_idKeyTyped
+
+    private void txt_product_unit_priceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_product_unit_priceKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_txt_product_unit_priceKeyTyped
+
+    private void txt_product_nameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_product_nameKeyTyped
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();
+    }//GEN-LAST:event_txt_product_nameKeyTyped
+
+    private void txt_purchase_amountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_purchase_amountKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_txt_purchase_amountKeyTyped
+
+    private void txt_purchase_priceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_purchase_priceKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_txt_purchase_priceKeyTyped
+
+    private void txt_customer_telephoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_customer_telephoneKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_txt_customer_telephoneKeyTyped
+
+    private void txt_employee_telephoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_employee_telephoneKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_txt_employee_telephoneKeyTyped
+
+    private void txt_suppliers_telephoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_suppliers_telephoneKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_txt_suppliers_telephoneKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -1691,6 +1864,7 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JButton btn_cancel_employee;
     public javax.swing.JButton btn_cancel_suppliers;
     public javax.swing.JButton btn_confirm_purchase;
+    public javax.swing.JButton btn_consultar_employee;
     public javax.swing.JButton btn_delete_category;
     public javax.swing.JButton btn_delete_customer;
     public javax.swing.JButton btn_delete_employee;
