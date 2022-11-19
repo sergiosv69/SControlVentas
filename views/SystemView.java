@@ -91,6 +91,7 @@ public class SystemView extends javax.swing.JFrame {
 
         //Controlador de Productos
         ProductsController product_section = new ProductsController(product, productDao, this);
+        product_section.listAllProducts();
     }
 
     public String titleInterface() {
@@ -148,7 +149,7 @@ public class SystemView extends javax.swing.JFrame {
         btn_register_product = new javax.swing.JButton();
         btn_update_product = new javax.swing.JButton();
         btn_delete_product = new javax.swing.JButton();
-        btn_calcel_product = new javax.swing.JButton();
+        btn_cancel_product = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txt_search_product = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -548,8 +549,8 @@ public class SystemView extends javax.swing.JFrame {
         btn_delete_product.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_delete_product.setText("Eliminar");
 
-        btn_calcel_product.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_calcel_product.setText("Cancelar");
+        btn_cancel_product.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_cancel_product.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -585,7 +586,7 @@ public class SystemView extends javax.swing.JFrame {
                     .addComponent(btn_register_product, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_update_product, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_delete_product, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_calcel_product, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_cancel_product, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
@@ -621,7 +622,7 @@ public class SystemView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_delete_product, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
-                        .addComponent(btn_calcel_product, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_cancel_product, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -1859,9 +1860,9 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JPanel Menureportes;
     public javax.swing.JButton btn_add_product_to_buy;
     private javax.swing.JButton btn_buscar;
-    public javax.swing.JButton btn_calcel_product;
     public javax.swing.JButton btn_cancel_customer;
     public javax.swing.JButton btn_cancel_employee;
+    public javax.swing.JButton btn_cancel_product;
     public javax.swing.JButton btn_cancel_suppliers;
     public javax.swing.JButton btn_confirm_purchase;
     public javax.swing.JButton btn_consultar_employee;

@@ -1,4 +1,3 @@
-
 package models;
 
 import java.sql.Connection;
@@ -30,7 +29,7 @@ public class ProductsDao {
             pst.setInt(1, product.getCode());
             pst.setString(2, product.getName());
             pst.setString(3, product.getDescription());
-            pst.setDouble(4, product.getUnit_price());         
+            pst.setDouble(4, product.getUnit_price());
             pst.setTimestamp(5, datetime);
             pst.setTimestamp(6, datetime);
             pst.setInt(7, product.getCategory_id());
@@ -51,7 +50,7 @@ public class ProductsDao {
     public List listProductQuery(String value){
     List<Products> list_products = new ArrayList(); 
     String query = "SELECT pro.*, ca.name AS category_name FROM products pro, categories ca WHERE pro.category_id = ca.id";
-    String query_search_customer = "SELECT pro.*, ca.name AS category_name FROM products pro INNER JOIN categories ca" + "ON pro.category_id = ca.id WHERE pro.name LIKE '%" + value + "%'";
+    String query_search_customer = "SELECT pro.*, ca.name AS category_name FROM products pro INNER JOIN categories ca ON pro.category_id = ca.id WHERE pro.name LIKE '%" + value + "%'";
     try{
             conn = cn.getConnection();
             if (value.equalsIgnoreCase("")) { //Si no ingresa nada ejecuta esto, sino el else
@@ -66,8 +65,9 @@ public class ProductsDao {
             product.setId(rs.getInt("id"));
             product.setCode(rs.getInt("code"));
             product.setName(rs.getString("name"));
+            product.setDescription(rs.getString("description"));
             product.setUnit_price(rs.getDouble("unit_price"));
-            product.setProduct_quantity(rs.getInt("product_quatity"));
+            product.setProduct_quantity(rs.getInt("product_quantity"));
             product.setCategory_name(rs.getString("category_name"));
             list_products.add(product);
             }
@@ -192,7 +192,7 @@ public class ProductsDao {
     
     //ActualizarStock
     public boolean updateStockQuery(int amount, int product_id){
-        String query = "UPDATE products SET product_quantity = ? WHERE id = ?";
+        String query = "UPDATE products SET product_quantity = ? WHERE id ?";
         try{
             conn = cn.getConnection();
             pst = conn.prepareStatement(query);
