@@ -1802,7 +1802,7 @@ public class SystemView extends javax.swing.JFrame {
 
     private void txt_purchase_priceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_purchase_priceKeyTyped
         char c = evt.getKeyChar();
-        if (c < '0' || c > '9') evt.consume();
+        if (c < '0' || c > '9' || c=='.') evt.consume();
     }//GEN-LAST:event_txt_purchase_priceKeyTyped
 
     private void txt_customer_telephoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_customer_telephoneKeyTyped

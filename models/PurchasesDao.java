@@ -41,7 +41,7 @@ public class PurchasesDao {
 
     //Metodo para registrar los detalles de la compra
     public boolean registerPurchaseDetailQuey(int purchase_id, int purchase_amount, double purchase_price, double purchase_subtotal, int product_id) {
-        String query = " INSERT INTO purchase_details (purchase_id, purchase_price, purchase_amount, purchase_subtotal, product_id) VALUES(?,?,?,?,?)";
+        String query = " INSERT INTO purchase_details (purchase_id, purchase_amount, purchase_price, purchase_subtotal, product_id) VALUES(?,?,?,?,?)";
 
         Timestamp datetime = new Timestamp(new Date().getTime());
         try {
