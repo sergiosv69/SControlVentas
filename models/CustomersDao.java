@@ -112,4 +112,26 @@ public class CustomersDao {
             return false;
         }
     }
+    
+    //BuscarClientePorCodigo
+    public Customers searchCustomer(int code){
+        String query = "SELECT cu.id, cu.full_name FROM customers cu WHERE id = ?";
+        Customers customer = new Customers();
+        
+        try{
+            conn = cn.getConnection();
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, code);
+            rs = pst.executeQuery();
+            
+            if(rs.next()){
+                customer.setId(rs.getInt("id"));
+                customer.setFull_name(rs.getString("full_name"));
+            }
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return customer;
+    }
 }

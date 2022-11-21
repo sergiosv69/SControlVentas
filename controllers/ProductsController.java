@@ -132,10 +132,9 @@ public class ProductsController implements ActionListener, MouseListener, KeyLis
                 row[0] = list.get(i).getId();
                 row[1] = list.get(i).getCode();
                 row[2] = list.get(i).getName();
-                row[3] = list.get(i).getDescription();
-                row[4] = list.get(i).getUnit_price();
-                row[5] = list.get(i).getProduct_quantity();
-                row[6] = list.get(i).getCategory_name();
+                row[3] = list.get(i).getUnit_price();
+                row[4] = list.get(i).getProduct_quantity();
+                row[5] = list.get(i).getCategory_name();
                 model.addRow(row);
             }
             views.products_table.setModel(model);

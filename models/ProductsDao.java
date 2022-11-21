@@ -149,7 +149,7 @@ public class ProductsDao {
     
     //BuscarProductoPorCodigo
     public Products searchCode(int code){
-        String query = "SELECT pro.id, pro.name FROM products pro WHERE code = ?";
+        String query = "SELECT pro.id, pro.name, pro.unit_price FROM products pro WHERE code = ?";
         Products product = new Products();
         
         try{
@@ -161,6 +161,7 @@ public class ProductsDao {
             if(rs.next()){
                 product.setId(rs.getInt("id"));
                 product.setName(rs.getString("name"));
+                product.setUnit_price(rs.getDouble("unit_price"));
             }
             
         }catch(SQLException e){
@@ -204,13 +205,7 @@ public class ProductsDao {
             JOptionPane.showMessageDialog(null, e.getMessage());
             return false;
         }
-    }
-    
-    
-    
-    
-    
-    
+    } 
     
            
     
