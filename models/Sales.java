@@ -4,7 +4,7 @@ public class Sales {
 
     private int id;
     private int code;
-    private int dni;
+    //private int dni;
     private String product_name;
     private int sale_amount;
     private double sale_price;
@@ -19,21 +19,18 @@ public class Sales {
     public Sales() {
     }
 
-    public Sales(int id, int code, int dni, String product_name, int sale_amount, double sale_uprice, double sale_subtotal, double total_sale, String created, String sales_name_client, String saler) {
+    public Sales(int id, int code, String product_name, int sale_amount, double sale_price, double sale_subtotal, double total_sale, String created, String sales_name_client, String saler) {
         this.id = id;
         this.code = code;
-        this.code = dni;
         this.product_name = product_name;
         this.sale_amount = sale_amount;
-        this.sale_price = sale_uprice;
+        this.sale_price = sale_price;
         this.sale_subtotal = sale_subtotal;
         this.total_sale = total_sale;
         this.created = created;
         this.sales_name_client = sales_name_client;
         this.saler = saler;
     }
-    
-    //Metodos get and set 
 
     public int getId() {
         return id;
@@ -42,13 +39,13 @@ public class Sales {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public int getDni() {
-        return dni;
+
+    public int getCode() {
+        return code;
     }
 
-    public void setDni(int code) {
-        this.dni = code;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getProduct_name() {
@@ -59,35 +56,35 @@ public class Sales {
         this.product_name = product_name;
     }
 
-    public int getSales_amount() {
+    public int getSale_amount() {
         return sale_amount;
     }
 
-    public void setSales_amount(int sale_amount) {
+    public void setSale_amount(int sale_amount) {
         this.sale_amount = sale_amount;
     }
 
-    public double getSales_price() {
+    public double getSale_price() {
         return sale_price;
     }
 
-    public void setSales_price(double sale_price) {
+    public void setSale_price(double sale_price) {
         this.sale_price = sale_price;
     }
 
-    public double getSales_subtotal() {
+    public double getSale_subtotal() {
         return sale_subtotal;
     }
 
-    public void setSales_subtotal(double sale_subtotal) {
+    public void setSale_subtotal(double sale_subtotal) {
         this.sale_subtotal = sale_subtotal;
     }
 
-    public double getTotal() {
+    public double getTotal_sale() {
         return total_sale;
     }
 
-    public void setTotal(double total_sale) {
+    public void setTotal_sale(double total_sale) {
         this.total_sale = total_sale;
     }
 
@@ -106,14 +103,6 @@ public class Sales {
     public void setSales_name_client(String sales_name_client) {
         this.sales_name_client = sales_name_client;
     }
-    
-    public String getSales_name_product() {
-        return product_name;
-    }
-
-    public void setSales_name_product(String sales_name_product) {
-        this.product_name = sales_name_product;
-    }
 
     public String getSaler() {
         return saler;
@@ -123,5 +112,5 @@ public class Sales {
         this.saler = saler;
     }
     
-
+   
 }

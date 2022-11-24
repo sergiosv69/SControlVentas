@@ -196,13 +196,12 @@ public class SystemView extends javax.swing.JFrame {
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
-        txt_sales_client_dni = new javax.swing.JTextField();
         txt_sales_client_name = new javax.swing.JTextField();
-        txt_sales_amount = new javax.swing.JTextField();
+        txt_sales_client_dni = new javax.swing.JTextField();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
-        txt_sales_uprecio = new javax.swing.JTextField();
+        txt_sales_precio = new javax.swing.JTextField();
         txt_sales_id = new javax.swing.JTextField();
         txt_sales_total_to_pay = new javax.swing.JTextField();
         btn_add_sales_to_buy = new javax.swing.JButton();
@@ -213,6 +212,7 @@ public class SystemView extends javax.swing.JFrame {
         jLabel60 = new javax.swing.JLabel();
         txt_sales_product_code = new javax.swing.JTextField();
         txt_sales_product_name = new javax.swing.JTextField();
+        txt_sales_amount = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
         sales_table = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
@@ -921,17 +921,16 @@ public class SystemView extends javax.swing.JFrame {
         jLabel52.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel52.setText("Cantidad:");
         jPanel20.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
-        jPanel20.add(txt_sales_client_dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 165, 30));
 
         txt_sales_client_name.setEditable(false);
         jPanel20.add(txt_sales_client_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 165, 30));
 
-        txt_sales_amount.addKeyListener(new java.awt.event.KeyAdapter() {
+        txt_sales_client_dni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_sales_amountKeyTyped(evt);
+                txt_sales_client_dniKeyTyped(evt);
             }
         });
-        jPanel20.add(txt_sales_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 165, 30));
+        jPanel20.add(txt_sales_client_dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 165, 30));
 
         jLabel57.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel57.setText("Precio unitario:");
@@ -945,8 +944,8 @@ public class SystemView extends javax.swing.JFrame {
         jLabel59.setText("Total a pagar:");
         jPanel20.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, -1, -1));
 
-        txt_sales_uprecio.setEditable(false);
-        jPanel20.add(txt_sales_uprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 165, 30));
+        txt_sales_precio.setEditable(false);
+        jPanel20.add(txt_sales_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 165, 30));
 
         txt_sales_id.setEditable(false);
         txt_sales_id.setEnabled(false);
@@ -999,16 +998,23 @@ public class SystemView extends javax.swing.JFrame {
         txt_sales_product_name.setEditable(false);
         jPanel20.add(txt_sales_product_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 165, 30));
 
+        txt_sales_amount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_sales_amountKeyTyped(evt);
+            }
+        });
+        jPanel20.add(txt_sales_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 165, 30));
+
         sales_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Nombre del producto", "Cantidad", "Precio", "Nombre del cliente"
+                "Id", "Nombre del producto", "Cantidad", "Precio", "Subtotal", "Nombre del cliente"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1032,7 +1038,7 @@ public class SystemView extends javax.swing.JFrame {
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
@@ -2013,9 +2019,9 @@ public class SystemView extends javax.swing.JFrame {
         if (c < '0' || c > '9') evt.consume();
     }//GEN-LAST:event_txt_suppliers_telephoneKeyTyped
 
-    private void txt_sales_amountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_sales_amountKeyTyped
+    private void txt_sales_client_dniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_sales_client_dniKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_sales_amountKeyTyped
+    }//GEN-LAST:event_txt_sales_client_dniKeyTyped
 
     private void btn_add_sales_to_buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_sales_to_buyActionPerformed
         // TODO add your handling code here:
@@ -2040,6 +2046,10 @@ public class SystemView extends javax.swing.JFrame {
     private void txt_purchase_product_codeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_purchase_product_codeKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_purchase_product_codeKeyReleased
+
+    private void txt_sales_amountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_sales_amountKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_sales_amountKeyTyped
 
     /**
      * @param args the command line arguments
@@ -2271,10 +2281,10 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txt_sales_client_dni;
     public javax.swing.JTextField txt_sales_client_name;
     public javax.swing.JTextField txt_sales_id;
+    public javax.swing.JTextField txt_sales_precio;
     public javax.swing.JTextField txt_sales_product_code;
     public javax.swing.JTextField txt_sales_product_name;
     public javax.swing.JTextField txt_sales_total_to_pay;
-    public javax.swing.JTextField txt_sales_uprecio;
     public javax.swing.JTextField txt_search_category;
     public javax.swing.JTextField txt_search_customer;
     public javax.swing.JTextField txt_search_employee;
