@@ -20,7 +20,7 @@ public class SalesDao {
 
     //Metodo de Registrar venta 
     public boolean registerSaleQuery(int customer_id, int employee_id, double total_sale) {
-        String query = "INSERT INTO sales (customer_id, employee_id, total_sale, created)"
+        String query = "INSERT INTO sales (id, customer_id, employee_id, total_sale, created)"
                 + "VALUES (?,?,?,?)";
         Timestamp datetime = new Timestamp(new Date().getTime());
         try {
@@ -33,14 +33,14 @@ public class SalesDao {
             pst.execute();  //ejecutamos la consulta
             return true;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al retornar la venta");
+            JOptionPane.showMessageDialog(null, "Error al retornar la venta" + e);
             return false;
         }
 
     }
 
     //Metodo para registrar los detalles de la venta
-    public boolean registerSaleDetailQuey(int sale_id, int sale_amount, double sale_uprice, double sale_subtotal, int product_id) {
+    public boolean registerSaleDetailQuey(int sale_id, int sale_amount, double sale_price, double sale_subtotal, int product_id) {
         String query = " INSERT INTO sale_details (sale_id, sale_amount, sale_price, sale_subtotal, product_id) VALUES(?,?,?,?,?)";
 
         Timestamp datetime = new Timestamp(new Date().getTime());
@@ -49,7 +49,7 @@ public class SalesDao {
             pst = conn.prepareStatement(query);
             pst.setInt(1, sale_id);
             pst.setInt(2, sale_amount);
-            pst.setDouble(3, sale_uprice);
+            pst.setDouble(3, sale_price);
             pst.setDouble(4, sale_subtotal);
             pst.setInt(5, product_id);
             pst.execute(); //ejecutamos la consulta
@@ -60,7 +60,7 @@ public class SalesDao {
         }
     }
 
-    //Obteer id de la compra
+    //Obteer id de la venta
     public int SaleId() {
         int id = 0;
         String query = "SELECT MAX(id) AS id FROM sales"; //obtener el id maximo de la tabla
@@ -69,7 +69,7 @@ public class SalesDao {
             pst = conn.prepareStatement(query);
             rs = pst.executeQuery();
             if (rs.next()) {
-                id = rs.getInt("id"); //Asignar el id maximo de la compra 
+                id = rs.getInt("id"); //Asignar el id maximo de la venta
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -80,7 +80,8 @@ public class SalesDao {
     //Listar todas las ventas realizadas 
     public List listAllSaleQuery() {
         List<Sales> list_sale = new ArrayList();
-        String query = "SELECT sa.*, cu.full_name AS sales_name_client, pr.name AS sales_name_product FROM sales sa, customers cu, products pr WHERE sa.customer_id = cu.id ORDER BY sa.id ASC";
+        String query = "SELECT sa.*, cu.full_name AS customer_name FROM sales sa, customers cu WHERE sa.customer_id = cu.id ORDER BY sa.id ASC";
+        //SELECT sa.*, cu.name AS sales_name_client, pr.name AS sales_name_product FROM sales sa, customers cu, products pr WHERE sa.customer_id = cu.id ORDER BY sa.id ASC
 
         try {
             conn = cn.getConnection();
@@ -90,9 +91,9 @@ public class SalesDao {
             while (rs.next()) {
                 Sales sale = new Sales();
                 sale.setId(rs.getInt("id"));
-                sale.setSales_name_product(rs.getString("sales_name_product"));
-                sale.setSales_name_client(rs.getString("sales_name_client"));
-                sale.setTotal(rs.getDouble("total"));
+                //sale.setSales_name_product(rs.getString(""));
+                sale.setSales_name_client(rs.getString("customer_name"));
+                sale.setTotal_sale(rs.getDouble("total_sale"));
                 sale.setCreated(rs.getString("created"));
                 list_sale.add(sale);
             }
@@ -119,10 +120,10 @@ public class SalesDao {
             while (rs.next()) {
                 Sales sale = new Sales();
                 sale.setProduct_name(rs.getString("product_name"));
-                sale.setSales_amount(rs.getInt("sale_amount"));
-                sale.setSales_price(rs.getDouble("sale_price"));
-                sale.setSales_subtotal(rs.getDouble("sale_subtotal"));
-                sale.setSales_name_product(rs.getString("customer_name"));
+                sale.setSale_amount(rs.getInt("sale_amount"));
+                sale.setSale_price(rs.getDouble("sale_price"));
+                sale.setSale_subtotal(rs.getDouble("sale_subtotal"));
+                sale.setSales_name_client(rs.getString("customer_name"));
                 sale.setCreated(rs.getString("created"));
                 sale.setSaler(rs.getString("full_name"));
                 list_sales.add(sale);

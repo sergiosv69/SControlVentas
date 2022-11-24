@@ -35,11 +35,10 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
     Products product = new Products();
     ProductsDao productDao = new ProductsDao();
     String rol = rol_user;
-    
+
     //Instanciar el modelo de clientes
     Customers customer = new Customers();
     CustomersDao customerDao = new CustomersDao();
-    String rol2 = rol_user;
 
     public SalesController(Sales sale, SalesDao saleDao, SystemView views) {
         this.sale = sale;
@@ -51,9 +50,10 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
         this.views.btn_confirm_sales.addActionListener(this);
         //boton de eliminar compra
         this.views.btn_remove_sales.addActionListener(this);
-        
+
         this.views.txt_sales_product_code.addKeyListener(this);
-        this.views.txt_sales_uprecio.addKeyListener(this);
+        this.views.txt_sales_client_dni.addKeyListener(this);
+        this.views.txt_sales_precio.addKeyListener(this);
         this.views.btn_new_sales.addActionListener(this);
         this.views.jLabelSales.addMouseListener(this);
         this.views.jLabelReports.addMouseListener(this);
@@ -63,12 +63,11 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == views.btn_add_sales_to_buy) {
-            
 
             //Almacenar la información
             int amount = Integer.parseInt(views.txt_sales_amount.getText());
             String product_name = views.txt_sales_product_name.getText();
-            double price = Double.parseDouble(views.txt_sales_uprecio.getText());
+            double price = Double.parseDouble(views.txt_sales_precio.getText());
             int sales_id = Integer.parseInt(views.txt_sales_id.getText());
             String customer_name = views.txt_sales_client_name.getText();
             //Verificar si ya se agrego un producto
@@ -100,15 +99,14 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
                 obj[5] = list.get(6);
                 temp.addRow(obj);
                 views.sales_table.setModel(temp);
-                cleanFieldsSales();                
+                cleanFieldsSales();
                 views.txt_sales_product_code.requestFocus();
+                views.txt_sales_client_dni.requestFocus();
                 calculateSales();
             }
 
         } else if (e.getSource() == views.btn_confirm_sales) {
             insertSale();
-            cleanTableTemp();
-            cleanFieldsSales();
         }
     }
 
@@ -124,7 +122,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
                 double sale_price = Double.parseDouble(views.sales_table.getValueAt(i, 3).toString());
                 double sale_subtotal = sale_price * sale_amount;
 
-                //Registrar detalles de la compra
+                //Registrar detalles de la venta
                 saleDao.registerSaleDetailQuey(sale_id, sale_amount, sale_price, sale_subtotal, product_id);
 
                 //Traer la cantidad de productos
@@ -150,9 +148,9 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
             for (int i = 0; i < list.size(); i++) {
                 row[0] = list.get(i).getId();
                 row[1] = list.get(i).getProduct_name();
-                row[2] = list.get(i).getTotal();
-                row[2] = list.get(i).getSales_name_client();
-                row[3] = list.get(i).getCreated();
+                row[2] = list.get(i).getTotal_sale();
+                row[3] = list.get(i).getSales_name_client();
+                row[4] = list.get(i).getCreated();
                 model.addRow(row);
             }
             views.sales_table.setModel(model);
@@ -177,14 +175,14 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
                     product = productDao.searchCode(id);
                     views.txt_sales_product_name.setText(product.getName());
                     views.txt_sales_id.setText("" + product.getId());
-                    views.txt_sales_uprecio.setText("" + product.getUnit_price());
+                    views.txt_sales_precio.setText("" + product.getUnit_price());
                     views.txt_sales_amount.requestFocus();
 
                 }
             }
         }
         //buscar cliente
-        
+
         if (e.getSource() == views.txt_sales_client_dni) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 //Si ya se selecciono enter se realizara lo siguiente
@@ -194,7 +192,6 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
                     int id = Integer.parseInt(views.txt_sales_client_dni.getText());
                     customer = customerDao.searchCustomer(id);
                     views.txt_sales_client_name.setText(customer.getFull_name());
-                    views.btn_add_sales_to_buy.requestFocus();
 
                 }
             }
@@ -203,16 +200,17 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == views.txt_sales_amount) {
+        if (e.getSource() == views.txt_sales_precio) {
             int quantity;
             double price = 0.0;
 
             if (views.txt_sales_amount.getText().equals("")) {
                 quantity = 1;
+                views.txt_sales_precio.setText("" + price);
             } else {
                 quantity = Integer.parseInt(views.txt_sales_amount.getText());
-                price = Double.parseDouble(views.txt_sales_uprecio.getText());
-                //views.txt_sales_subtotal.setText("" + quantity * price);
+                price = Double.parseDouble(views.txt_sales_precio.getText());
+                views.txt_sales_total_to_pay.setText("" + quantity * price);
 
             }
         }
@@ -222,10 +220,10 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
     public void cleanFieldsSales() {
         views.txt_sales_product_name.setText("");
         views.txt_sales_client_name.setText("");
-        views.txt_sales_uprecio.setText("");
-        views.txt_sales_amount.setText("");
+        views.txt_sales_precio.setText("");
+        views.txt_sales_client_dni.setText("");
         views.txt_sales_product_code.setText("");
-        //views.txt_sales_subtotal.setText("");
+        views.txt_sales_amount.setText("");
         views.txt_sales_id.setText("");
         views.txt_sales_total_to_pay.setText("");
     }
