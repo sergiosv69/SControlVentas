@@ -48,6 +48,7 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
         this.views.txt_purchase_product_code.addKeyListener(this);
         this.views.txt_purchase_price.addKeyListener(this);
         this.views.btn_new_purchase.addActionListener(this);
+        this.views.jLabelCategories.addMouseListener(this);
         this.views.jLabelPurchases.addMouseListener(this);
         this.views.jLabelReports.addMouseListener(this);
         this.views.jLabelSettings.addMouseListener(this);
@@ -118,16 +119,17 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
             calculatePurchase();
             views.txt_purchase_product_code.requestFocus();
         } else if (e.getSource() == views.btn_new_purchase) {
-            cleanTableTemp();
+            
             cleanFieldsPurchases();
+            cleanTable();
         }
     }
 
     private void insertPurchase() {
-        double total = Double.parseDouble(views.txt_purchase_total_to_pay.getText());
+        double total_sale = Double.parseDouble(views.txt_purchase_total_to_pay.getText());
         int emplyee_id = id_user;
 
-        if (purchaseDao.registerPurchaseQuery(getIdSupplier, emplyee_id, total)) {
+        if (purchaseDao.registerPurchaseQuery(getIdSupplier, emplyee_id, total_sale)) {
             int purchase_id = purchaseDao.purchaseId();
             for (int i = 0; i < views.purchases_table.getRowCount(); i++) {
                 int product_id = Integer.parseInt(views.purchases_table.getValueAt(i, 0).toString());
@@ -255,17 +257,21 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
                 JOptionPane.showMessageDialog(null, "No tiene privilegios de Administrador para ingresar a esta vista");
             }
         } else if (e.getSource() == views.jLabelReports) {
+            views.jTabbedPane1.setSelectedIndex(7);
+            cleanTable();
+            listAllPurchases();
+        } else if (e.getSource() == views.jLabelCategories) {
             views.jTabbedPane1.setSelectedIndex(6);
             cleanTable();
             listAllPurchases();
         } else if (e.getSource() == views.jLabelSettings) {
             //Solo para administrador
             if (rol.equals("Administrador")) {
-                views.jTabbedPane1.setSelectedIndex(7);
+                views.jTabbedPane1.setSelectedIndex(8);
                 //Limpiar tabla
             } else {
                 //si no es admi
-                views.jTabbedPane1.setEnabledAt(7, false);
+                views.jTabbedPane1.setEnabledAt(8, false);
                 views.jLabelSettings.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No tienes permiso de administrador para acceder a esta vista");
 

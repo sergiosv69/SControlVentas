@@ -117,10 +117,16 @@ public class CategoriesController implements ActionListener, MouseListener, KeyL
     @Override
     public void mouseClicked(MouseEvent e) {
         if(e.getSource() == views.categories_table){
+            if (rol.equals("Administrador")) {
             int row = views.categories_table.rowAtPoint(e.getPoint());
             views.txt_category_id.setText(views.categories_table.getValueAt(row, 0).toString());
             views.txt_category_name.setText(views.categories_table.getValueAt(row, 1).toString());
-            views.btn_register_category.setEnabled(false);
+            //views.btn_register_category.setEnabled(false);
+            } else {
+                views.jTabbedPane1.setEnabledAt(6, false);
+                views.jLabelCategories.setEnabled(false);
+                JOptionPane.showMessageDialog(null, "No tiene privilegios de Administrador para ingresar a esta vista");
+            }
         }
  
     }

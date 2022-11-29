@@ -50,14 +50,15 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
         this.views.btn_confirm_sales.addActionListener(this);
         //boton de eliminar compra
         this.views.btn_remove_sales.addActionListener(this);
+        //
+        this.views.btn_new_sales.addActionListener(this);
 
         this.views.txt_sales_product_code.addKeyListener(this);
         this.views.txt_sales_client_dni.addKeyListener(this);
-        this.views.txt_sales_precio.addKeyListener(this);
+        this.views.txt_sales_id.addKeyListener(this);
+        this.views.txt_products_amount.addKeyListener(this);
         this.views.btn_new_sales.addActionListener(this);
         this.views.jLabelSales.addMouseListener(this);
-        this.views.jLabelReports.addMouseListener(this);
-        this.views.jLabelSettings.addMouseListener(this);
     }
 
     @Override
@@ -68,8 +69,10 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
             int amount = Integer.parseInt(views.txt_sales_amount.getText());
             String product_name = views.txt_sales_product_name.getText();
             double price = Double.parseDouble(views.txt_sales_precio.getText());
+            int sales_dni = Integer.parseInt(views.txt_sales_client_dni.getText());
             int sales_id = Integer.parseInt(views.txt_sales_id.getText());
             String customer_name = views.txt_sales_client_name.getText();
+            getIdCustomer = sales_dni;
             //Verificar si ya se agrego un producto
             if (amount > 0) {
                 temp = (DefaultTableModel) views.sales_table.getModel();
@@ -107,13 +110,21 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
 
         } else if (e.getSource() == views.btn_confirm_sales) {
             insertSale();
+        } else if (e.getSource() == views.btn_remove_sales) {
+            model = (DefaultTableModel) views.sales_table.getModel();
+            model.removeRow(views.sales_table.getSelectedRow());
+            calculateSales();
+            views.txt_sales_product_code.requestFocus();
+        } else if (e.getSource() == views.btn_new_sales) {
+            cleanTableTemp();
+            cleanFieldsSales();
         }
     }
 
     private void insertSale() {
         double total = Double.parseDouble(views.txt_sales_total_to_pay.getText());
         int emplyee_id = id_user;
-
+       
         if (saleDao.registerSaleQuery(getIdCustomer, emplyee_id, total)) {
             int sale_id = saleDao.SaleId();
             for (int i = 0; i < views.sales_table.getRowCount(); i++) {
@@ -127,7 +138,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
 
                 //Traer la cantidad de productos
                 product = productDao.searchId(product_id);
-                int amount = product.getProduct_quantity() + sale_amount;
+                int amount = product.getProduct_quantity() - sale_amount;
                 productDao.updateStockQuery(amount, product_id);
             }
             cleanTableTemp();
@@ -139,7 +150,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
     }
 
     //Metodo para listar las ventas realizadas
-    public void listAllSales() {
+    /*public void listAllSales() {
         if (rol.equals("Administrador") || rol.equals("Empleado")) {
             List<Sales> list = saleDao.listAllSaleQuery();
             model = (DefaultTableModel) views.sales_table.getModel();
@@ -155,7 +166,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
             }
             views.sales_table.setModel(model);
         }
-    }
+    }*/
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -176,6 +187,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
                     views.txt_sales_product_name.setText(product.getName());
                     views.txt_sales_id.setText("" + product.getId());
                     views.txt_sales_precio.setText("" + product.getUnit_price());
+                    views.txt_products_amount.setText("" + product.getProduct_quantity());
                     views.txt_sales_amount.requestFocus();
 
                 }
@@ -200,16 +212,16 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == views.txt_sales_precio) {
+        if (e.getSource() == views.txt_sales_id) {
             int quantity;
             double price = 0.0;
 
             if (views.txt_sales_amount.getText().equals("")) {
                 quantity = 1;
-                views.txt_sales_precio.setText("" + price);
+                views.txt_sales_id.setText("" + price);
             } else {
                 quantity = Integer.parseInt(views.txt_sales_amount.getText());
-                price = Double.parseDouble(views.txt_sales_precio.getText());
+                price = Double.parseDouble(views.txt_sales_id.getText());
                 views.txt_sales_total_to_pay.setText("" + quantity * price);
 
             }
@@ -220,11 +232,12 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
     public void cleanFieldsSales() {
         views.txt_sales_product_name.setText("");
         views.txt_sales_client_name.setText("");
-        views.txt_sales_precio.setText("");
+        views.txt_sales_id.setText("");
         views.txt_sales_client_dni.setText("");
         views.txt_sales_product_code.setText("");
+        views.txt_products_amount.setText("");
+        views.txt_sales_precio.setText("");
         views.txt_sales_amount.setText("");
-        views.txt_sales_id.setText("");
         views.txt_sales_total_to_pay.setText("");
     }
 
@@ -252,7 +265,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == views.jLabelSales) {
             if (rol.equals("Administrador") || rol.equals("Empleado")) {
-                views.jTabbedPane1.setSelectedIndex(1);
+                views.jTabbedPane1.setSelectedIndex(2);
                 cleanTable();
 
             } else {
@@ -260,23 +273,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
                 views.jLabelPurchases.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No tiene privilegios de Administrador para ingresar a esta vista");
             }
-        } else if (e.getSource() == views.jLabelReports) {
-            views.jTabbedPane1.setSelectedIndex(6);
-            cleanTable();
-            listAllSales();
-        } else if (e.getSource() == views.jLabelSettings) {
-            //Solo para administrador
-            if (rol.equals("Administrador")) {
-                views.jTabbedPane1.setSelectedIndex(7);
-                //Limpiar tabla
-            } else {
-                //si no es admi
-                views.jTabbedPane1.setEnabledAt(7, false);
-                views.jLabelSettings.setEnabled(false);
-                JOptionPane.showMessageDialog(null, "No tienes permiso de administrador para acceder a esta vista");
-
-            }
-        }
+       }
 
     }
 

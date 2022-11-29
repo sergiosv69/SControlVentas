@@ -170,8 +170,8 @@ public class SuppliersController implements ActionListener, MouseListener, KeyLi
             views.btn_register_suppliers.setEnabled(false);
             views.txt_suppliers_id.setEnabled(false);
         } else if (e.getSource() == views.jLabelSuppliers) {
-            if (rol.equals("Administrador") || rol.equals("Empleado")) {
-                views.jTabbedPane1.setSelectedIndex(4);
+            if (rol.equals("Administrador")) {
+                views.jTabbedPane1.setSelectedIndex(5);
                 //limpiar tabla
                 cleanTable();
                 //limpiar campos
@@ -179,7 +179,7 @@ public class SuppliersController implements ActionListener, MouseListener, KeyLi
                 //listar proveedores
                 listAllSuppliers();
             } else {
-                views.jTabbedPane1.setEnabledAt(4, false);
+                views.jTabbedPane1.setEnabledAt(5, false);
                 views.jLabelSuppliers.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "no tienes privilegio de Administrador para acceder a esta vista");
             }
