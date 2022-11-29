@@ -139,7 +139,7 @@ public class ProductsController implements ActionListener, MouseListener, KeyLis
             }
             views.products_table.setModel(model);
 
-            if (rol.equals("Auxiliar")) {
+            if (rol.equals("Empleado")) {
                 views.btn_register_product.setEnabled(false);
                 views.btn_update_product.setEnabled(false);
                 views.btn_delete_category.setEnabled(false);
@@ -174,11 +174,11 @@ public class ProductsController implements ActionListener, MouseListener, KeyLis
             views.txt_product_id.setText(views.products_table.getValueAt(row, 0).toString());
             views.txt_product_code.setText(views.products_table.getValueAt(row, 1).toString());
             views.txt_product_name.setText(views.products_table.getValueAt(row, 2).toString());
-            views.txt_product_description.setText(views.products_table.getValueAt(row, 3).toString());
-            views.txt_product_unit_price.setText(views.products_table.getValueAt(row, 4).toString());
+            //views.txt_product_description.setText(productDao.searchProduct()getDescription();
+            views.txt_product_unit_price.setText(views.products_table.getValueAt(row, 3).toString());
             DynamicCombobox category_id = (DynamicCombobox) views.cmb_product_category.getSelectedItem();
             product.setCategory_id(category_id.getId());
-            views.cmb_product_category.setName(views.products_table.getValueAt(row, 6).toString());
+            views.cmb_product_category.setName(views.products_table.getValueAt(row, 5).toString());
             //views.cmb_product_category.setSelectedItem(views.products_table.getValueAt(row, 6).toString());
             //Deshabilitar boton de registrar
             views.btn_register_product.setEnabled(false);

@@ -20,7 +20,7 @@ public class SalesDao {
 
     //Metodo de Registrar venta 
     public boolean registerSaleQuery(int customer_id, int employee_id, double total_sale) {
-        String query = "INSERT INTO sales (id, customer_id, employee_id, total_sale, created)"
+        String query = "INSERT INTO sales (customer_id, employee_id, total_sale, created)"
                 + "VALUES (?,?,?,?)";
         Timestamp datetime = new Timestamp(new Date().getTime());
         try {

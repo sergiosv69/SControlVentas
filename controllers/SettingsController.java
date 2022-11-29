@@ -19,6 +19,7 @@ public class SettingsController implements MouseListener {
         this.views.jLabelProducts.addMouseListener(this);
         this.views.jLabelPurchases.addMouseListener(this);
         this.views.jLabelCustomers.addMouseListener(this);
+        this.views.jLabelSales.addMouseListener(this);
         this.views.jLabelEmployees.addMouseListener(this);
         this.views.jLabelSuppliers.addMouseListener(this);
         this.views.jLabelCategories.addMouseListener(this);
@@ -58,8 +59,10 @@ public class SettingsController implements MouseListener {
            views.jPanelProducts.setBackground(new Color(152,202,63));
        }else if(e.getSource() == views.jLabelPurchases){
            views.jPanelPurchases.setBackground(new Color(152,202,63));
+       }else if(e.getSource() == views.jLabelSales){
+           views.jPanelSales.setBackground(new Color(152,202,63));
        }else if(e.getSource() == views.jLabelCustomers){
-           views.jPanelCustomers.setBackground(new Color(152,202,63));
+           views.jPanelCustomer.setBackground(new Color(152,202,63));
        }else if(e.getSource() == views.jLabelEmployees){
            views.jPanelEmployees.setBackground(new Color(152,202,63));
        }else if(e.getSource() == views.jLabelSuppliers){
@@ -79,8 +82,10 @@ public class SettingsController implements MouseListener {
            views.jPanelProducts.setBackground(new Color(18,45,61));
        }else if(e.getSource() == views.jLabelPurchases){
            views.jPanelPurchases.setBackground(new Color(18,45,61));
+       }else if(e.getSource() == views.jLabelSales){
+           views.jPanelSales.setBackground(new Color(18,45,61));
        }else if(e.getSource() == views.jLabelCustomers){
-           views.jPanelCustomers.setBackground(new Color(18,45,61));
+           views.jPanelCustomer.setBackground(new Color(18,45,61));
        }else if(e.getSource() == views.jLabelEmployees){
            views.jPanelEmployees.setBackground(new Color(18,45,61));
        }else if(e.getSource() == views.jLabelSuppliers){

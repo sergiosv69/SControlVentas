@@ -6,9 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Customers;
@@ -149,7 +147,7 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
             views.btn_register_customer.setEnabled(false);
             views.txt_customer_id.setEditable(false);
         } else if (e.getSource() == views.jLabelCustomers) {
-            views.jTabbedPane1.setSelectedIndex(2);
+            views.jTabbedPane1.setSelectedIndex(3);
             //Limpiar tabla
             cleanTable();
             //Limpiar campos

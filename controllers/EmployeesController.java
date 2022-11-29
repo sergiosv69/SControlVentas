@@ -215,7 +215,7 @@ public class EmployeesController implements ActionListener, MouseListener, KeyLi
         } else if (e.getSource() == views.jLabelEmployees) {
             //Solo para administrador
             if (rol.equals("Administrador")) {
-                views.jTabbedPane1.setSelectedIndex(3);
+                views.jTabbedPane1.setSelectedIndex(4);
                 //Limpiar tabla
                 cleanTable();
                 //Limpiar campos
@@ -224,7 +224,7 @@ public class EmployeesController implements ActionListener, MouseListener, KeyLi
                 listAllEmployees();
             } else {
                 //si no es admi
-                views.jTabbedPane1.setEnabledAt(3, false);
+                views.jTabbedPane1.setEnabledAt(4, false);
                 views.jLabelEmployees.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No tienes permiso de administrador para acceder a esta vista");
 
