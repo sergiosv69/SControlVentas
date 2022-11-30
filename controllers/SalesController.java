@@ -18,7 +18,7 @@ import models.Products;
 import models.ProductsDao;
 import models.Sales;
 import models.SalesDao;
-import views.Print;
+import views.Print_sale;
 import views.SystemView;
 
 public class SalesController implements KeyListener, ActionListener, MouseListener {
@@ -144,7 +144,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
             cleanTableTemp();
             JOptionPane.showMessageDialog(null, "venta generada con éxito");
             cleanFieldsSales();
-            Print print = new Print(sale_id);
+            Print_sale print = new Print_sale(sale_id);
             print.setVisible(true);
         }
     }
