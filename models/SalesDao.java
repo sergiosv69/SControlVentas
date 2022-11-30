@@ -91,7 +91,6 @@ public class SalesDao {
             while (rs.next()) {
                 Sales sale = new Sales();
                 sale.setId(rs.getInt("id"));
-                //sale.setSales_name_product(rs.getString(""));
                 sale.setSales_name_client(rs.getString("customer_name"));
                 sale.setTotal_sale(rs.getDouble("total_sale"));
                 sale.setCreated(rs.getString("created"));
@@ -107,7 +106,7 @@ public class SalesDao {
     //Listar ventas para limpiar facturas
     public List listSaleDetailQuery(int id) {
         List<Sales> list_sales = new ArrayList();
-        String query = "SELECT sa.created, sade.sale_price, sade.sale_amount, sade.sale_subtotal, cu.name AS customer_name,\n"
+        String query = "SELECT sa.created, sade.sale_price, sade.sale_amount, sade.sale_subtotal, cu.full_name AS customer_full_name,\n"
                 + "pro.name AS product_name, em.full_name FROM sales sa INNER JOIN sale_details sade ON sa.id = sade.sale_id\n"
                 + "INNER JOIN products pro ON sade.product_id = pro.id INNER JOIN customers cu ON sa.customer_id = cu.id\n"
                 + "INNER JOIN employees em ON sa.employee_id = em.id WHERE sa.id = ?";
@@ -123,13 +122,13 @@ public class SalesDao {
                 sale.setSale_amount(rs.getInt("sale_amount"));
                 sale.setSale_price(rs.getDouble("sale_price"));
                 sale.setSale_subtotal(rs.getDouble("sale_subtotal"));
-                sale.setSales_name_client(rs.getString("customer_name"));
+                sale.setSales_name_client(rs.getString("customer_full_name"));
                 sale.setCreated(rs.getString("created"));
                 sale.setSaler(rs.getString("full_name"));
                 list_sales.add(sale);
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage() + e);
         }
         return list_sales;
     }
