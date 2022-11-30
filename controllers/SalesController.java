@@ -102,9 +102,9 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
                 obj[5] = list.get(6);
                 temp.addRow(obj);
                 views.sales_table.setModel(temp);
-                cleanFieldsSales();
+                cleanFieldsSales2();
                 views.txt_sales_product_code.requestFocus();
-                views.txt_sales_client_dni.requestFocus();
+                //views.txt_sales_client_dni.requestFocus();
                 calculateSales();
             }
 
@@ -233,6 +233,17 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
         views.txt_sales_client_name.setText("");
         views.txt_sales_id.setText("");
         views.txt_sales_client_dni.setText("");
+        views.txt_sales_product_code.setText("");
+        views.txt_products_amount.setText("");
+        views.txt_sales_precio.setText("");
+        views.txt_sales_amount.setText("");
+        views.txt_sales_total_to_pay.setText("");
+    }
+    public void cleanFieldsSales2() {
+        views.txt_sales_product_name.setText("");
+        //views.txt_sales_client_name.setText("");
+        views.txt_sales_id.setText("");
+        //views.txt_sales_client_dni.setText("");
         views.txt_sales_product_code.setText("");
         views.txt_products_amount.setText("");
         views.txt_sales_precio.setText("");
