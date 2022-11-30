@@ -17,6 +17,8 @@ import models.Products;
 import models.ProductsDao;
 import models.Purchases;
 import models.PurchasesDao;
+import models.Sales;
+import models.SalesDao;
 import views.Print;
 import views.SystemView;
 
@@ -34,7 +36,9 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
     Products product = new Products();
     ProductsDao productDao = new ProductsDao();
     String rol = rol_user;
-
+    
+    SalesDao saleDao = new SalesDao(); 
+   
     public PurchasesController(Purchases purchase, PurchasesDao purchaseDao, SystemView views) {
         this.purchase = purchase;
         this.purchaseDao = purchaseDao;
@@ -155,7 +159,7 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
 
     //Metodo para listar las compras realizadas
     public void listAllPurchases() {
-        if (rol.equals("Administrador") || rol.equals("Empleado")) {
+        if (rol.equals("Administrador")) {
             List<Purchases> list = purchaseDao.listAllPurchasesQuery();
             model = (DefaultTableModel) views.table_all_purchases.getModel();
             Object[] row = new Object[4];
@@ -168,6 +172,24 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
                 model.addRow(row);
             }
             views.table_all_purchases.setModel(model);
+        }
+    }
+    
+    //Metodo para listar las ventas realizadas
+    public void listAllSales() {
+        if (rol.equals("Administrador")) {
+            List<Sales> list = saleDao.listAllSaleQuery();
+            model = (DefaultTableModel) views.table_all_sales.getModel();
+            Object[] row = new Object[4];
+            //Recorrer con un ciclo for
+            for (int i = 0; i < list.size(); i++) {
+                row[0] = list.get(i).getId();
+                row[1] = list.get(i).getSales_name_client();
+                row[2] = list.get(i).getTotal_sale();
+                row[3] = list.get(i).getCreated();
+                model.addRow(row);
+            }
+            views.table_all_sales.setModel(model);
         }
     }
 
@@ -260,10 +282,12 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
             views.jTabbedPane1.setSelectedIndex(7);
             cleanTable();
             listAllPurchases();
+            listAllSales();
         } else if (e.getSource() == views.jLabelCategories) {
             views.jTabbedPane1.setSelectedIndex(6);
             cleanTable();
             listAllPurchases();
+            listAllSales();
         } else if (e.getSource() == views.jLabelSettings) {
             //Solo para administrador
             if (rol.equals("Administrador")) {

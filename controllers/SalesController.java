@@ -124,7 +124,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
     private void insertSale() {
         double total = Double.parseDouble(views.txt_sales_total_to_pay.getText());
         int emplyee_id = id_user;
-       
+
         if (saleDao.registerSaleQuery(getIdCustomer, emplyee_id, total)) {
             int sale_id = saleDao.SaleId();
             for (int i = 0; i < views.sales_table.getRowCount(); i++) {
@@ -150,23 +150,22 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
     }
 
     //Metodo para listar las ventas realizadas
-    /*public void listAllSales() {
-        if (rol.equals("Administrador") || rol.equals("Empleado")) {
+    public void listAllSales() {
+        if (rol.equals("Administrador")) {
             List<Sales> list = saleDao.listAllSaleQuery();
-            model = (DefaultTableModel) views.sales_table.getModel();
+            model = (DefaultTableModel) views.table_all_sales.getModel();
             Object[] row = new Object[4];
             //Recorrer con un ciclo for
             for (int i = 0; i < list.size(); i++) {
                 row[0] = list.get(i).getId();
-                row[1] = list.get(i).getProduct_name();
+                row[1] = list.get(i).getSales_name_client();
                 row[2] = list.get(i).getTotal_sale();
-                row[3] = list.get(i).getSales_name_client();
-                row[4] = list.get(i).getCreated();
+                row[3] = list.get(i).getCreated();
                 model.addRow(row);
             }
-            views.sales_table.setModel(model);
+            views.table_all_sales.setModel(model);
         }
-    }*/
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -269,11 +268,11 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
                 cleanTable();
 
             } else {
-                views.jTabbedPane1.setEnabledAt(1, false);
+                views.jTabbedPane1.setEnabledAt(2, false);
                 views.jLabelPurchases.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No tiene privilegios de Administrador para ingresar a esta vista");
-            }
-       }
+            } 
+        }
 
     }
 

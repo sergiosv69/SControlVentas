@@ -6,24 +6,22 @@
 package views;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.PrintJob;
 import java.awt.Toolkit;
-import java.awt.print.PageFormat;
 import java.util.List;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
-import models.Purchases;
-import models.PurchasesDao;
+import models.Sales;
+import models.SalesDao;
 
 /**
  *
- * @author ARTURO
+ *
  */
 public class Print_sale extends javax.swing.JFrame {
     
-    Purchases purchase = new Purchases();
-    PurchasesDao purchaseDao = new PurchasesDao();
+    Sales sale = new Sales();
+    SalesDao saleDao = new SalesDao();
     DefaultTableModel model = new DefaultTableModel();
     /**
      * Creates new form Print
@@ -32,38 +30,38 @@ public class Print_sale extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        setTitle("Factura de Compra");
+        setTitle("Factura de Venta");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         txt_invoice.setText("" + id);
-        listAllPurchasesDetails(id);
-        calculatePurchase();
+        listAllSalesDetails(id);
+        calculateSale();
     }
 
     private Print_sale() {
         }
-    public void listAllPurchasesDetails(int id){
-        List<Purchases> list = purchaseDao.listPurchaseDetailQuery(id);
-        model = (DefaultTableModel) purchase_details_table.getModel();
+    public void listAllSalesDetails(int id){
+        List<Sales> list = saleDao.listSaleDetailQuery(id);
+        model = (DefaultTableModel) sale_details_table.getModel();
         Object[] row = new Object[7];
         for(int i = 0; i < list.size(); i++){
             row[0] = list.get(i).getProduct_name();
-            row[1] = list.get(i).getPurchase_amount();
-            row[2] = list.get(i).getPurchase_price();
-            row[3] = list.get(i).getPurchase_subtotal();
-            row[4] = list.get(i).getSupplier_name_product();
-            row[5] = list.get(i).getPurcharser();
+            row[1] = list.get(i).getSale_amount();
+            row[2] = list.get(i).getSale_price();
+            row[3] = list.get(i).getSale_subtotal();
+            row[4] = list.get(i).getSales_name_client();
+            row[5] = list.get(i).getSaler();
             row[6] = list.get(i).getCreated();
             model.addRow(row);
         }
-        purchase_details_table.setModel(model);
+        sale_details_table.setModel(model);
     }
     
     //Calcular el total
-    public void calculatePurchase() {
+    public void calculateSale() {
         double total = 0.00;
-        int numRow = purchase_details_table.getRowCount();
+        int numRow = sale_details_table.getRowCount();
         for (int i = 0; i < numRow; i++) {        
-            total = total + Double.parseDouble(String.valueOf(purchase_details_table.getValueAt(i, 3)));
+            total = total + Double.parseDouble(String.valueOf(sale_details_table.getValueAt(i, 3)));
         }
         txt_total.setText("" + total);
     }
@@ -84,11 +82,11 @@ public class Print_sale extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        purchase_details_table = new javax.swing.JTable();
+        sale_details_table = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         txt_total = new javax.swing.JTextField();
         txt_invoice = new javax.swing.JTextField();
-        btn_print_purchase = new javax.swing.JButton();
+        btn_print_sale = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,7 +119,7 @@ public class Print_sale extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("DETALLES DE LA  VENTA:");
 
-        purchase_details_table.setModel(new javax.swing.table.DefaultTableModel(
+        sale_details_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -137,11 +135,11 @@ public class Print_sale extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(purchase_details_table);
-        if (purchase_details_table.getColumnModel().getColumnCount() > 0) {
-            purchase_details_table.getColumnModel().getColumn(0).setMinWidth(100);
-            purchase_details_table.getColumnModel().getColumn(5).setMinWidth(110);
-            purchase_details_table.getColumnModel().getColumn(6).setMinWidth(80);
+        jScrollPane1.setViewportView(sale_details_table);
+        if (sale_details_table.getColumnModel().getColumnCount() > 0) {
+            sale_details_table.getColumnModel().getColumn(0).setMinWidth(100);
+            sale_details_table.getColumnModel().getColumn(5).setMinWidth(110);
+            sale_details_table.getColumnModel().getColumn(6).setMinWidth(80);
         }
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -208,11 +206,11 @@ public class Print_sale extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btn_print_purchase.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_print_purchase.setText("IMPRIMIR");
-        btn_print_purchase.addActionListener(new java.awt.event.ActionListener() {
+        btn_print_sale.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btn_print_sale.setText("IMPRIMIR");
+        btn_print_sale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_print_purchaseActionPerformed(evt);
+                btn_print_saleActionPerformed(evt);
             }
         });
 
@@ -223,7 +221,7 @@ public class Print_sale extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(239, 239, 239)
-                .addComponent(btn_print_purchase)
+                .addComponent(btn_print_sale)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -231,21 +229,21 @@ public class Print_sale extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(btn_print_purchase)
+                .addComponent(btn_print_sale)
                 .addGap(0, 61, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_print_purchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_print_purchaseActionPerformed
+    private void btn_print_saleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_print_saleActionPerformed
        Toolkit tk = form_print.getToolkit();
        PrintJob pj = tk.getPrintJob(this, null, null);       
        Graphics graphics = pj.getGraphics();
        form_print.print(graphics);
        graphics.dispose();
        pj.end();       
-    }//GEN-LAST:event_btn_print_purchaseActionPerformed
+    }//GEN-LAST:event_btn_print_saleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,7 +281,7 @@ public class Print_sale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_print_purchase;
+    private javax.swing.JButton btn_print_sale;
     private javax.swing.JPanel form_print;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -292,7 +290,7 @@ public class Print_sale extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable purchase_details_table;
+    private javax.swing.JTable sale_details_table;
     private javax.swing.JTextField txt_invoice;
     private javax.swing.JTextField txt_total;
     // End of variables declaration//GEN-END:variables

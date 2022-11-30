@@ -94,7 +94,7 @@ public class SystemView extends javax.swing.JFrame {
         
         //Controlador de ventas
         SalesController sale_section = new SalesController(sale, saleDao, this);
-        //sale_section.listAllSales();
+        sale_section.listAllSales();
 
         //Controlador de categorias
         CategoriesController category_section = new CategoriesController(category, categoriesDao, this);
@@ -308,7 +308,10 @@ public class SystemView extends javax.swing.JFrame {
         txt_search_category = new javax.swing.JTextField();
         Menureportes = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        txt_all_sales = new javax.swing.JScrollPane();
+        table_all_sales = new javax.swing.JTable();
+        jLabel56 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
         table_all_purchases = new javax.swing.JTable();
         Menuconfiguracion = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
@@ -1720,8 +1723,33 @@ public class SystemView extends javax.swing.JFrame {
 
         jLabel21.setBackground(new java.awt.Color(255, 255, 255));
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel21.setText("COMPRAS REALIZADAS");
-        Menureportes.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 280, 20));
+        jLabel21.setText("VENTAS REALIZADAS");
+        Menureportes.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 280, 20));
+
+        table_all_sales.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Factura", "Cliente", "Total", "Fecha"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        txt_all_sales.setViewportView(table_all_sales);
+
+        Menureportes.add(txt_all_sales, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 910, 190));
+
+        jLabel56.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel56.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel56.setText("COMPRAS REALIZADAS");
+        Menureportes.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 25, 280, 20));
 
         table_all_purchases.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1739,9 +1767,9 @@ public class SystemView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(table_all_purchases);
+        jScrollPane9.setViewportView(table_all_purchases);
 
-        Menureportes.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 910, 380));
+        Menureportes.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 910, 190));
 
         jTabbedPane1.addTab("Reportes", Menureportes);
 
@@ -2229,6 +2257,7 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
@@ -2282,11 +2311,11 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     public javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JLabel label_name_employee;
     public javax.swing.JLabel label_name_rol;
@@ -2295,7 +2324,9 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTable sales_table;
     public javax.swing.JTable suppliers_table;
     public javax.swing.JTable table_all_purchases;
+    public javax.swing.JTable table_all_sales;
     public javax.swing.JTextField txt_address_profile;
+    private javax.swing.JScrollPane txt_all_sales;
     public javax.swing.JTextField txt_category_id;
     public javax.swing.JTextField txt_category_name;
     public javax.swing.JTextField txt_customer_address;
