@@ -8,17 +8,37 @@ public class LoginView extends javax.swing.JFrame {
 
     Employees employee = new Employees();
     EmployeesDao employee_dao = new EmployeesDao();
-    
+
     public LoginView() {
         initComponents();
         //Controlador del login
         LoginController employee_login = new LoginController(employee, employee_dao, this);
-        setSize(930,450);
+        setSize(930, 450);
         setResizable(false);
         setTitle("Ingresar al sistema");
         setLocationRelativeTo(null);
         this.repaint();
+        btn_enter.setEnabled(false);
     }
+
+    public void ValidarLogin() {
+        if(txt_username.getText().isEmpty()){
+            jluser.setText("*Campo requerido");
+        }else{
+            jluser.setText("");
+        }
+        if(txt_password.getText().isEmpty()){
+            jlpassword.setText("*Campo requerido");
+        }else{
+            jlpassword.setText("");
+        }
+        if(txt_username.getText().trim().isEmpty() ||txt_password.getText().isEmpty()){
+            btn_enter.setEnabled(false);
+        }else{
+             btn_enter.setEnabled(true);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -30,6 +50,8 @@ public class LoginView extends javax.swing.JFrame {
         txt_username = new javax.swing.JTextField();
         txt_password = new javax.swing.JPasswordField();
         btn_enter = new javax.swing.JButton();
+        jlpassword = new javax.swing.JLabel();
+        jluser = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Wallpaper = new javax.swing.JLabel();
 
@@ -41,12 +63,12 @@ public class LoginView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("INICIAR SESIÓN");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, 60));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, 60));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Usuario:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -54,9 +76,19 @@ public class LoginView extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
 
         txt_username.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel1.add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 210, 35));
+        txt_username.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_usernameKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 210, 35));
 
         txt_password.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_passwordKeyReleased(evt);
+            }
+        });
         jPanel1.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 210, 35));
 
         btn_enter.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -67,7 +99,15 @@ public class LoginView extends javax.swing.JFrame {
                 btn_enterActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_enter, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 210, 35));
+        jPanel1.add(btn_enter, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 210, 35));
+
+        jlpassword.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jlpassword.setForeground(new java.awt.Color(204, 0, 0));
+        jPanel1.add(jlpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 210, 20));
+
+        jluser.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jluser.setForeground(new java.awt.Color(204, 0, 0));
+        jPanel1.add(jluser, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 210, 20));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -105,6 +145,14 @@ public class LoginView extends javax.swing.JFrame {
     private void btn_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enterActionPerformed
 
     }//GEN-LAST:event_btn_enterActionPerformed
+
+    private void txt_usernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usernameKeyReleased
+        ValidarLogin();
+    }//GEN-LAST:event_txt_usernameKeyReleased
+
+    private void txt_passwordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyReleased
+         ValidarLogin();
+    }//GEN-LAST:event_txt_passwordKeyReleased
 
     /**
      * @param args the command line arguments
@@ -149,6 +197,8 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jlpassword;
+    private javax.swing.JLabel jluser;
     public javax.swing.JPasswordField txt_password;
     public javax.swing.JTextField txt_username;
     // End of variables declaration//GEN-END:variables

@@ -61,6 +61,7 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
                 if (customerDao.registerCustomerQuery(customer)) {
                     cleanTable();
                     listAllCustomers();
+                    cleanFields();
                     JOptionPane.showMessageDialog(null, "Cliente registrado con éxito");
                 } else {
                     JOptionPane.showMessageDialog(null, "Ha ocurrido un error al registrar al cliente");
@@ -204,6 +205,7 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
         views.txt_customer_address.setText("");
         views.txt_customer_telephone.setText("");
         views.txt_customer_email.setText("");
+        views.jlcorreo.setText("");
     }
 
     public void cleanTable() {
