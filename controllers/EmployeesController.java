@@ -280,6 +280,7 @@ public class EmployeesController implements ActionListener, MouseListener, KeyLi
         views.txt_employee_telephone.setText("");
         views.txt_employee_email.setText("");
         views.txt_employee_password.setText("");
+        views.jlcorreo_employee.setText("");
         views.cmb_rol.setSelectedIndex(0);
     }
 

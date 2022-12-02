@@ -61,67 +61,86 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == views.btn_add_product_to_buy) {
-            DynamicCombobox supplier_cmb = (DynamicCombobox) views.cmb_purchase_supplier.getSelectedItem();  //Realizar un casteo
-            int supplier_id = supplier_cmb.getId();
+            if (views.txt_purchase_product_code.getText().equals("")
+                    || views.txt_purchase_amount.getText().equals("")
+                    || views.txt_purchase_price.getText().equals("")
+                    || views.txt_purchase_product_name.getText().equals("")
+                    || views.txt_purchase_subtotal.getText().equals("")
+                    || views.txt_purchase_id.getText().equals("")) {
 
-            //Verificar si un  usuario asigno un proveedor
-            if (getIdSupplier == 0) {
-                getIdSupplier = supplier_id;
+                JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
             } else {
-                if (getIdSupplier != supplier_id) {
-                    JOptionPane.showMessageDialog(null, "No puede realizar una misma compra a varios proveedores");
+                DynamicCombobox supplier_cmb = (DynamicCombobox) views.cmb_purchase_supplier.getSelectedItem();  //Realizar un casteo
+                int supplier_id = supplier_cmb.getId();
+                //Verificamos si los campos estan vacios
+
+                //Verificar si un  usuario asigno un proveedor
+                if (getIdSupplier == 0) {
+                    getIdSupplier = supplier_id;
                 } else {
-                    //Almacenar la información
-                    int amount = Integer.parseInt(views.txt_purchase_amount.getText());
-                    String product_name = views.txt_purchase_product_name.getText();
-                    double price = Double.parseDouble(views.txt_purchase_price.getText());
-                    int purchase_id = Integer.parseInt(views.txt_purchase_id.getText());
-                    String supplier_name = views.cmb_purchase_supplier.getSelectedItem().toString();
-                    //Verificar si ya se agrego un producto
-                    if (amount > 0) {
-                        temp = (DefaultTableModel) views.purchases_table.getModel();
-                        for (int i = 0; i < views.purchases_table.getRowCount(); i++) {
-                            if (views.purchases_table.getValueAt(i, 1).equals(views.txt_purchase_product_name.getText())) {
-                                JOptionPane.showMessageDialog(null, "El producto ya esta registrado en la tabla de compras");
-                                return;
+                    if (getIdSupplier != supplier_id) {
+                        JOptionPane.showMessageDialog(null, "No puede realizar una misma compra a varios proveedores");
+                    } else {
+                        //Almacenar la información
+                        int amount = Integer.parseInt(views.txt_purchase_amount.getText());
+                        String product_name = views.txt_purchase_product_name.getText();
+                        double price = Double.parseDouble(views.txt_purchase_price.getText());
+                        int purchase_id = Integer.parseInt(views.txt_purchase_id.getText());
+                        String supplier_name = views.cmb_purchase_supplier.getSelectedItem().toString();
+                        
+                        views.btn_confirm_purchase.setEnabled(true);
+                        //Verificar si ya se agrego un producto
+                        if (amount > 0) {
+                            temp = (DefaultTableModel) views.purchases_table.getModel();
+                            for (int i = 0; i < views.purchases_table.getRowCount(); i++) {
+                                if (views.purchases_table.getValueAt(i, 1).equals(views.txt_purchase_product_name.getText())) {
+                                    JOptionPane.showMessageDialog(null, "El producto ya esta registrado en la tabla de compras");
+                                    return;
+                                }
                             }
+                            ArrayList list = new ArrayList();
+                            //Aggregamos cada uno de los items
+                            item = 1;
+                            list.add(item);
+                            list.add(purchase_id);
+                            list.add(product_name);
+                            list.add(amount);
+                            list.add(price);
+                            list.add(amount * price);
+                            list.add(supplier_name);
+
+                            Object[] obj = new Object[6];
+                            obj[0] = list.get(1);
+                            obj[1] = list.get(2);
+                            obj[2] = list.get(3);
+                            obj[3] = list.get(4);
+                            obj[4] = list.get(5);
+                            obj[5] = list.get(6);
+                            temp.addRow(obj);
+                            views.purchases_table.setModel(temp);
+                            cleanFieldsPurchases();
+                            views.cmb_purchase_supplier.setEditable(false);
+                            views.txt_purchase_product_code.requestFocus();
+                            calculatePurchase();
                         }
-                        ArrayList list = new ArrayList();
-                        //Aggregamos cada uno de los items
-                        item = 1;
-                        list.add(item);
-                        list.add(purchase_id);
-                        list.add(product_name);
-                        list.add(amount);
-                        list.add(price);
-                        list.add(amount * price);
-                        list.add(supplier_name);
 
-                        Object[] obj = new Object[6];
-                        obj[0] = list.get(1);
-                        obj[1] = list.get(2);
-                        obj[2] = list.get(3);
-                        obj[3] = list.get(4);
-                        obj[4] = list.get(5);
-                        obj[5] = list.get(6);
-                        temp.addRow(obj);
-                        views.purchases_table.setModel(temp);
-                        cleanFieldsPurchases();
-                        views.cmb_purchase_supplier.setEditable(false);
-                        views.txt_purchase_product_code.requestFocus();
-                        calculatePurchase();
                     }
-
                 }
 
             }
         } else if (e.getSource() == views.btn_confirm_purchase) {
             insertPurchase();
         } else if (e.getSource() == views.btn_remove_purchase) {
-            model = (DefaultTableModel) views.purchases_table.getModel();
-            model.removeRow(views.purchases_table.getSelectedRow());
-            calculatePurchase();
-            views.txt_purchase_product_code.requestFocus();
+            int row = views.purchases_table.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar una compra para eliminar");
+            } else {
+                model = (DefaultTableModel) views.purchases_table.getModel();
+                model.removeRow(views.purchases_table.getSelectedRow());
+                calculatePurchase();
+                views.txt_purchase_product_code.requestFocus();
+                JOptionPane.showMessageDialog(null, "Registro de compra eliminado con éxito");
+            }
         } else if (e.getSource() == views.btn_new_purchase) {
 
             cleanFieldsPurchases();

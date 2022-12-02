@@ -34,6 +34,8 @@ import models.Suppliers;
 import models.SuppliersDao;
 
 public class SystemView extends javax.swing.JFrame {
+    
+    
 
     //Clientes 
     Customers customer = new Customers();
@@ -70,6 +72,7 @@ public class SystemView extends javax.swing.JFrame {
         setTitle("Panel de administración");  //TITULO A LA VENTANA
         setLocationRelativeTo(null); //CENTRADO
         titleInterface();
+        btn_confirm_purchase.setEnabled(false);
 
         //controlador del Settings
         SettingsController setting = new SettingsController(this);
@@ -235,6 +238,7 @@ public class SystemView extends javax.swing.JFrame {
         btn_delete_customer = new javax.swing.JButton();
         btn_cancel_customer = new javax.swing.JButton();
         btn_buscar = new javax.swing.JButton();
+        jlcorreo = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         customers_table = new javax.swing.JTable();
         jLabel26 = new javax.swing.JLabel();
@@ -263,6 +267,7 @@ public class SystemView extends javax.swing.JFrame {
         txt_employee_email = new javax.swing.JTextField();
         txt_employee_password = new javax.swing.JPasswordField();
         btn_consultar_employee = new javax.swing.JButton();
+        jlcorreo_employee = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         employees_table = new javax.swing.JTable();
         jLabel27 = new javax.swing.JLabel();
@@ -1119,6 +1124,17 @@ public class SystemView extends javax.swing.JFrame {
             }
         });
 
+        txt_customer_email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_customer_emailActionPerformed(evt);
+            }
+        });
+        txt_customer_email.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_customer_emailKeyTyped(evt);
+            }
+        });
+
         btn_register_customer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_register_customer.setText("Registrar");
         btn_register_customer.addActionListener(new java.awt.event.ActionListener() {
@@ -1143,6 +1159,9 @@ public class SystemView extends javax.swing.JFrame {
                 btn_buscarActionPerformed(evt);
             }
         });
+
+        jlcorreo.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jlcorreo.setForeground(new java.awt.Color(204, 0, 0));
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -1169,8 +1188,9 @@ public class SystemView extends javax.swing.JFrame {
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txt_customer_address, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_customer_fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_customer_email, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                            .addComponent(txt_customer_email, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlcorreo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btn_register_customer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1205,6 +1225,14 @@ public class SystemView extends javax.swing.JFrame {
                         .addComponent(btn_register_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addComponent(btn_update_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_delete_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_cancel_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel20)
@@ -1213,15 +1241,9 @@ public class SystemView extends javax.swing.JFrame {
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
                             .addComponent(txt_customer_email, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_update_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_delete_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(btn_cancel_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8))))
         );
 
         jPanel14.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 20, 920, 310));
@@ -1339,6 +1361,12 @@ public class SystemView extends javax.swing.JFrame {
         cmb_rol.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmb_rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Empleado" }));
 
+        txt_employee_email.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_employee_emailKeyTyped(evt);
+            }
+        });
+
         btn_consultar_employee.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_consultar_employee.setText("Consultar");
         btn_consultar_employee.addActionListener(new java.awt.event.ActionListener() {
@@ -1346,6 +1374,9 @@ public class SystemView extends javax.swing.JFrame {
                 btn_consultar_employeeActionPerformed(evt);
             }
         });
+
+        jlcorreo_employee.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jlcorreo_employee.setForeground(new java.awt.Color(204, 0, 0));
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -1362,6 +1393,7 @@ public class SystemView extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txt_employee_fullname)
                         .addGroup(jPanel19Layout.createSequentialGroup()
                             .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txt_employee_username)
@@ -1378,10 +1410,10 @@ public class SystemView extends javax.swing.JFrame {
                                     .addComponent(jLabel34)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jlcorreo_employee, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                                 .addComponent(txt_employee_email, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                                 .addComponent(txt_employee_telephone)
-                                .addComponent(txt_employee_password)))
-                        .addComponent(txt_employee_fullname))
+                                .addComponent(txt_employee_password))))
                     .addComponent(txt_employee_id, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1415,7 +1447,9 @@ public class SystemView extends javax.swing.JFrame {
                     .addComponent(txt_employee_username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel36)
                     .addComponent(txt_employee_email, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlcorreo_employee, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
                     .addComponent(jLabel37)
@@ -1983,7 +2017,7 @@ public class SystemView extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_confirm_purchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirm_purchaseActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btn_confirm_purchaseActionPerformed
 
     private void btn_consultar_employeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultar_employeeActionPerformed
@@ -2040,12 +2074,20 @@ public class SystemView extends javax.swing.JFrame {
 
     private void txt_customer_idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_customer_idKeyTyped
         char c = evt.getKeyChar();
-        if (c < '0' || c > '9') evt.consume();
+        if ((c >= '0' && c <= '9') && txt_customer_id.getText().length()<=7){
+            
+        }else{
+            evt.consume();
+        }
     }//GEN-LAST:event_txt_customer_idKeyTyped
 
     private void txt_employee_idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_employee_idKeyTyped
-        char c = evt.getKeyChar();
-        if (c < '0' || c > '9') evt.consume();
+       char c = evt.getKeyChar();
+        if ((c >= '0' && c <= '9') && txt_employee_id.getText().length()<=7){
+            
+        }else{
+            evt.consume();
+        }
     }//GEN-LAST:event_txt_employee_idKeyTyped
 
     private void txt_product_unit_priceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_product_unit_priceKeyTyped
@@ -2070,12 +2112,20 @@ public class SystemView extends javax.swing.JFrame {
 
     private void txt_customer_telephoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_customer_telephoneKeyTyped
         char c = evt.getKeyChar();
-        if (c < '0' || c > '9') evt.consume();
+        if ((c >= '0' && c <= '9') && txt_customer_telephone.getText().length()<=8){
+            
+        }else{
+            evt.consume();
+        }   
     }//GEN-LAST:event_txt_customer_telephoneKeyTyped
 
     private void txt_employee_telephoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_employee_telephoneKeyTyped
         char c = evt.getKeyChar();
-        if (c < '0' || c > '9') evt.consume();
+        if ((c >= '0' && c <= '9') && txt_employee_telephone.getText().length()<=8){
+            
+        }else{
+            evt.consume();
+        }
     }//GEN-LAST:event_txt_employee_telephoneKeyTyped
 
     private void txt_suppliers_telephoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_suppliers_telephoneKeyTyped
@@ -2128,6 +2178,31 @@ public class SystemView extends javax.swing.JFrame {
     private void txt_purchase_product_codeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_purchase_product_codeKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_purchase_product_codeKeyTyped
+
+    private void txt_customer_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_customer_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_customer_emailActionPerformed
+
+    private void txt_customer_emailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_customer_emailKeyTyped
+         
+        if(!txt_customer_email.getText().contains("@")||!txt_customer_email.getText().contains(".")){
+            btn_register_customer.setEnabled(false);
+            jlcorreo.setText("*Correo invalido");
+        }else{
+            btn_register_customer.setEnabled(true);
+            jlcorreo.setText("");
+        }
+    }//GEN-LAST:event_txt_customer_emailKeyTyped
+
+    private void txt_employee_emailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_employee_emailKeyTyped
+        if(!txt_employee_email.getText().contains("@")||!txt_employee_email.getText().contains(".")){
+            btn_register_employee.setEnabled(false);
+            jlcorreo_employee.setText("*Correo invalido");
+        }else{
+            btn_register_employee.setEnabled(true);
+            jlcorreo_employee.setText("");
+        }
+    }//GEN-LAST:event_txt_employee_emailKeyTyped
 
     /**
      * @param args the command line arguments
@@ -2317,6 +2392,8 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     public javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JLabel jlcorreo;
+    public javax.swing.JLabel jlcorreo_employee;
     public javax.swing.JLabel label_name_employee;
     public javax.swing.JLabel label_name_rol;
     public javax.swing.JTable products_table;

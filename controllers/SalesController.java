@@ -64,48 +64,54 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == views.btn_add_sales_to_buy) {
+            if (views.txt_sales_product_code.getText().equals("")
+                    || views.txt_sales_amount.getText().equals("")
+                    || views.txt_sales_client_dni.getText().equals("")) {
 
-            //Almacenar la información
-            int amount = Integer.parseInt(views.txt_sales_amount.getText());
-            String product_name = views.txt_sales_product_name.getText();
-            double price = Double.parseDouble(views.txt_sales_precio.getText());
-            int sales_dni = Integer.parseInt(views.txt_sales_client_dni.getText());
-            int sales_id = Integer.parseInt(views.txt_sales_id.getText());
-            String customer_name = views.txt_sales_client_name.getText();
-            getIdCustomer = sales_dni;
-            //Verificar si ya se agrego un producto
-            if (amount > 0) {
-                temp = (DefaultTableModel) views.sales_table.getModel();
-                for (int i = 0; i < views.sales_table.getRowCount(); i++) {
-                    if (views.sales_table.getValueAt(i, 1).equals(views.txt_sales_product_name.getText())) {
-                        JOptionPane.showMessageDialog(null, "El producto ya esta registrado en la tabla de ventas");
-                        return;
+                JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+            } else {
+                //Almacenar la información
+                int amount = Integer.parseInt(views.txt_sales_amount.getText());
+                String product_name = views.txt_sales_product_name.getText();
+                double price = Double.parseDouble(views.txt_sales_precio.getText());
+                int sales_dni = Integer.parseInt(views.txt_sales_client_dni.getText());
+                int sales_id = Integer.parseInt(views.txt_sales_id.getText());
+                String customer_name = views.txt_sales_client_name.getText();
+                getIdCustomer = sales_dni;
+                //Verificar si ya se agrego un producto
+                if (amount > 0) {
+                    temp = (DefaultTableModel) views.sales_table.getModel();
+                    for (int i = 0; i < views.sales_table.getRowCount(); i++) {
+                        if (views.sales_table.getValueAt(i, 1).equals(views.txt_sales_product_name.getText())) {
+                            JOptionPane.showMessageDialog(null, "El producto ya esta registrado en la tabla de ventas");
+                            return;
+                        }
                     }
-                }
-                ArrayList list = new ArrayList();
-                //Aggregamos cada uno de los items
-                item = 1;
-                list.add(item);
-                list.add(sales_id);
-                list.add(product_name);
-                list.add(amount);
-                list.add(price);
-                list.add(amount * price);
-                list.add(customer_name);
+                    ArrayList list = new ArrayList();
+                    //Aggregamos cada uno de los items
+                    item = 1;
+                    list.add(item);
+                    list.add(sales_id);
+                    list.add(product_name);
+                    list.add(amount);
+                    list.add(price);
+                    list.add(amount * price);
+                    list.add(customer_name);
 
-                Object[] obj = new Object[6];
-                obj[0] = list.get(1);
-                obj[1] = list.get(2);
-                obj[2] = list.get(3);
-                obj[3] = list.get(4);
-                obj[4] = list.get(5);
-                obj[5] = list.get(6);
-                temp.addRow(obj);
-                views.sales_table.setModel(temp);
-                cleanFieldsSales2();
-                views.txt_sales_product_code.requestFocus();
-                //views.txt_sales_client_dni.requestFocus();
-                calculateSales();
+                    Object[] obj = new Object[6];
+                    obj[0] = list.get(1);
+                    obj[1] = list.get(2);
+                    obj[2] = list.get(3);
+                    obj[3] = list.get(4);
+                    obj[4] = list.get(5);
+                    obj[5] = list.get(6);
+                    temp.addRow(obj);
+                    views.sales_table.setModel(temp);
+                    cleanFieldsSales2();
+                    views.txt_sales_product_code.requestFocus();
+                    //views.txt_sales_client_dni.requestFocus();
+                    calculateSales();
+                }
             }
 
         } else if (e.getSource() == views.btn_confirm_sales) {
@@ -239,6 +245,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
         views.txt_sales_amount.setText("");
         views.txt_sales_total_to_pay.setText("");
     }
+
     public void cleanFieldsSales2() {
         views.txt_sales_product_name.setText("");
         //views.txt_sales_client_name.setText("");
@@ -282,7 +289,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
                 views.jTabbedPane1.setEnabledAt(2, false);
                 views.jLabelPurchases.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No tiene privilegios de Administrador para ingresar a esta vista");
-            } 
+            }
         }
 
     }
