@@ -36,9 +36,9 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
     Products product = new Products();
     ProductsDao productDao = new ProductsDao();
     String rol = rol_user;
-    
-    SalesDao saleDao = new SalesDao(); 
-   
+
+    SalesDao saleDao = new SalesDao();
+
     public PurchasesController(Purchases purchase, PurchasesDao purchaseDao, SystemView views) {
         this.purchase = purchase;
         this.purchaseDao = purchaseDao;
@@ -123,7 +123,7 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
             calculatePurchase();
             views.txt_purchase_product_code.requestFocus();
         } else if (e.getSource() == views.btn_new_purchase) {
-            
+
             cleanFieldsPurchases();
             cleanTable();
         }
@@ -174,7 +174,7 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
             views.table_all_purchases.setModel(model);
         }
     }
-    
+
     //Metodo para listar las ventas realizadas
     public void listAllSales() {
         if (rol.equals("Administrador")) {
@@ -269,7 +269,7 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == views.jLabelPurchases) {
-            if (rol.equals("Administrador") || rol.equals("Empleado")) {
+            if (rol.equals("Administrador")) {
                 views.jTabbedPane1.setSelectedIndex(1);
                 cleanTable();
 
@@ -279,15 +279,27 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
                 JOptionPane.showMessageDialog(null, "No tiene privilegios de Administrador para ingresar a esta vista");
             }
         } else if (e.getSource() == views.jLabelReports) {
-            views.jTabbedPane1.setSelectedIndex(7);
-            cleanTable();
-            listAllPurchases();
-            listAllSales();
+            if (rol.equals("Administrador")) {
+                views.jTabbedPane1.setSelectedIndex(7);
+                cleanTable();
+                listAllPurchases();
+                listAllSales();
+            } else {
+                views.jTabbedPane1.setEnabledAt(7, false);
+                views.jLabelReports.setEnabled(false);
+                JOptionPane.showMessageDialog(null, "No tiene privilegios de Administrador para ingresar a esta vista");
+            }
         } else if (e.getSource() == views.jLabelCategories) {
-            views.jTabbedPane1.setSelectedIndex(6);
-            cleanTable();
-            listAllPurchases();
-            listAllSales();
+            if (rol.equals("Administrador")) {
+                views.jTabbedPane1.setSelectedIndex(6);
+                cleanTable();
+                listAllPurchases();
+                listAllSales();
+            } else {
+                views.jTabbedPane1.setEnabledAt(6, false);
+                views.jLabelCategories.setEnabled(false);
+                JOptionPane.showMessageDialog(null, "No tiene privilegios de Administrador para ingresar a esta vista");
+            }
         } else if (e.getSource() == views.jLabelSettings) {
             //Solo para administrador
             if (rol.equals("Administrador")) {
@@ -299,6 +311,16 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
                 views.jLabelSettings.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No tienes permiso de administrador para acceder a esta vista");
 
+            }
+        } else if (e.getSource() == views.jLabelProducts) {
+            //Solo para administrador
+            if (rol.equals("Empleado")) {
+                views.jTabbedPane1.setSelectedIndex(0);
+                views.btn_register_product.setEnabled(false);
+                views.btn_delete_product.setEnabled(false);
+                views.btn_cancel_product.setEnabled(false);
+                views.btn_add_product_to_buy.setEnabled(false);
+                //Limpiar tabla
             }
         }
 

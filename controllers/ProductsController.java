@@ -124,7 +124,7 @@ public class ProductsController implements ActionListener, MouseListener, KeyLis
 
     //Listar productos
     public void listAllProducts() {
-        if (rol.equals("Administrador") || rol.equals("Auxiliar")) {
+        if (rol.equals("Administrador") || rol.equals("Empleado")) {
             List<Products> list = productDao.listProductQuery(views.txt_search_product.getText());
             model = (DefaultTableModel) views.products_table.getModel();
             Object[] row = new Object[7];
@@ -143,6 +143,7 @@ public class ProductsController implements ActionListener, MouseListener, KeyLis
                 views.btn_register_product.setEnabled(false);
                 views.btn_update_product.setEnabled(false);
                 views.btn_delete_category.setEnabled(false);
+                views.btn_delete_product.setEnabled(false);
                 views.btn_cancel_product.setEnabled(false);
                 views.txt_product_code.setEnabled(false);
                 views.txt_product_description.setEnabled(false);
