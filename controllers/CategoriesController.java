@@ -32,6 +32,8 @@ public class CategoriesController implements ActionListener, MouseListener, KeyL
         this.views.btn_register_category.addActionListener(this);
         //boton de modificar categoria
         this.views.btn_update_category.addActionListener(this);
+        // boton para agregar nueva vategoria
+        this.views.btn_new_category.addActionListener(this);
         //boton de eliminar categoria
         this.views.btn_delete_category.addActionListener(this);
         this.views.categories_table.addMouseListener(this);
@@ -93,9 +95,11 @@ public class CategoriesController implements ActionListener, MouseListener, KeyL
                     views.btn_register_category.setEnabled(true);
                     listAllCategories();
                     JOptionPane.showMessageDialog(null, "Categoria eliminada con éxito");
-                    
+
                 }
             }
+        } else if (e.getSource() == views.btn_new_category) {
+            cleanFields();
         }
     }
 
@@ -116,19 +120,19 @@ public class CategoriesController implements ActionListener, MouseListener, KeyL
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getSource() == views.categories_table){
+        if (e.getSource() == views.categories_table) {
             if (rol.equals("Administrador")) {
-            int row = views.categories_table.rowAtPoint(e.getPoint());
-            views.txt_category_id.setText(views.categories_table.getValueAt(row, 0).toString());
-            views.txt_category_name.setText(views.categories_table.getValueAt(row, 1).toString());
-            //views.btn_register_category.setEnabled(false);
+                int row = views.categories_table.rowAtPoint(e.getPoint());
+                views.txt_category_id.setText(views.categories_table.getValueAt(row, 0).toString());
+                views.txt_category_name.setText(views.categories_table.getValueAt(row, 1).toString());
+                //views.btn_register_category.setEnabled(false);
             } else {
                 views.jTabbedPane1.setEnabledAt(6, false);
                 views.jLabelCategories.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No tiene privilegios de Administrador para ingresar a esta vista");
             }
         }
- 
+
     }
 
     @Override
@@ -181,11 +185,11 @@ public class CategoriesController implements ActionListener, MouseListener, KeyL
         views.txt_category_id.setText("");
         views.txt_category_name.setText("");
     }
-    
+
     //Método para mostrar el nombre de las categorías
-    public void getCategoryName(){
+    public void getCategoryName() {
         List<Categories> list = categoryDao.listCategoriesQuery(views.txt_search_category.getText());
-        for(int i=0;i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             int id = list.get(i).getId();
             String name = list.get(i).getName();
             views.cmb_product_category.addItem(new DynamicCombobox(id, name));

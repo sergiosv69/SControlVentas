@@ -78,6 +78,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
                 int sales_id = Integer.parseInt(views.txt_sales_id.getText());
                 String customer_name = views.txt_sales_client_name.getText();
                 getIdCustomer = sales_dni;
+                views.btn_confirm_sales.setEnabled(true);
                 //Verificar si ya se agrego un producto
                 if (amount > 0) {
                     temp = (DefaultTableModel) views.sales_table.getModel();
@@ -117,12 +118,18 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
         } else if (e.getSource() == views.btn_confirm_sales) {
             insertSale();
         } else if (e.getSource() == views.btn_remove_sales) {
-            model = (DefaultTableModel) views.sales_table.getModel();
-            model.removeRow(views.sales_table.getSelectedRow());
-            calculateSales();
-            views.txt_sales_product_code.requestFocus();
+            int row = views.sales_table.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar una venta registrada para eliminar");
+            } else {
+                model = (DefaultTableModel) views.sales_table.getModel();
+                model.removeRow(views.sales_table.getSelectedRow());
+                calculateSales();
+                views.txt_sales_product_code.requestFocus();
+                JOptionPane.showMessageDialog(null, "Registro de venta eliminado con éxito");
+            }
         } else if (e.getSource() == views.btn_new_sales) {
-            cleanTableTemp();
+            cleanTable();
             cleanFieldsSales();
         }
     }

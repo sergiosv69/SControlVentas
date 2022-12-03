@@ -133,7 +133,7 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
         } else if (e.getSource() == views.btn_remove_purchase) {
             int row = views.purchases_table.getSelectedRow();
             if (row == -1) {
-                JOptionPane.showMessageDialog(null, "Debes seleccionar una compra para eliminar");
+                JOptionPane.showMessageDialog(null, "Debes seleccionar una compra registrada para eliminar");
             } else {
                 model = (DefaultTableModel) views.purchases_table.getModel();
                 model.removeRow(views.purchases_table.getSelectedRow());
