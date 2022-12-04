@@ -35,6 +35,7 @@ public class Print_sale extends javax.swing.JFrame {
         txt_invoice.setText("" + id);
         listAllSalesDetails(id);
         calculateSale();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/Icon.png")));
     }
 
     private Print_sale() {

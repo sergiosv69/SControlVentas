@@ -35,6 +35,7 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
     Products product = new Products();
     ProductsDao productDao = new ProductsDao();
     String rol = rol_user;
+    
 
     //Instanciar el modelo de clientes
     Customers customer = new Customers();
@@ -297,27 +298,31 @@ public class SalesController implements KeyListener, ActionListener, MouseListen
                 views.jLabelPurchases.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No tiene privilegios de Administrador para ingresar a esta vista");
             }
-        }
+        } 
 
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(MouseEvent e
+    ) {
 
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(MouseEvent e
+    ) {
 
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e
+    ) {
 
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(MouseEvent e
+    ) {
 
     }
 

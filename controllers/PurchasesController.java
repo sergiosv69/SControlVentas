@@ -87,7 +87,7 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
                         double price = Double.parseDouble(views.txt_purchase_price.getText());
                         int purchase_id = Integer.parseInt(views.txt_purchase_id.getText());
                         String supplier_name = views.cmb_purchase_supplier.getSelectedItem().toString();
-                        
+
                         views.btn_confirm_purchase.setEnabled(true);
                         //Verificar si ya se agrego un producto
                         if (amount > 0) {
@@ -194,24 +194,6 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
         }
     }
 
-    //Metodo para listar las ventas realizadas
-    public void listAllSales() {
-        if (rol.equals("Administrador")) {
-            List<Sales> list = saleDao.listAllSaleQuery();
-            model = (DefaultTableModel) views.table_all_sales.getModel();
-            Object[] row = new Object[4];
-            //Recorrer con un ciclo for
-            for (int i = 0; i < list.size(); i++) {
-                row[0] = list.get(i).getId();
-                row[1] = list.get(i).getSales_name_client();
-                row[2] = list.get(i).getTotal_sale();
-                row[3] = list.get(i).getCreated();
-                model.addRow(row);
-            }
-            views.table_all_sales.setModel(model);
-        }
-    }
-
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -302,7 +284,6 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
                 views.jTabbedPane1.setSelectedIndex(7);
                 cleanTable();
                 listAllPurchases();
-                listAllSales();
             } else {
                 views.jTabbedPane1.setEnabledAt(7, false);
                 views.jLabelReports.setEnabled(false);
@@ -313,7 +294,6 @@ public class PurchasesController implements KeyListener, ActionListener, MouseLi
                 views.jTabbedPane1.setSelectedIndex(6);
                 cleanTable();
                 listAllPurchases();
-                listAllSales();
             } else {
                 views.jTabbedPane1.setEnabledAt(6, false);
                 views.jLabelCategories.setEnabled(false);

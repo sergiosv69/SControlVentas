@@ -55,6 +55,7 @@ public class CategoriesController implements ActionListener, MouseListener, KeyL
                     cleanTable();
                     cleanFields();
                     listAllCategories();
+                    
                     JOptionPane.showMessageDialog(null, "Categoria registrada con éxito");
                 } else {
                     JOptionPane.showMessageDialog(null, "Ha ocurrido un error al registrar categoria");

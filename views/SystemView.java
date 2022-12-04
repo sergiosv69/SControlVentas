@@ -11,6 +11,7 @@ import controllers.PurchasesController;
 import controllers.SalesController;
 import controllers.SettingsController;
 import controllers.SuppliersController;
+import java.awt.Toolkit;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -74,6 +75,7 @@ public class SystemView extends javax.swing.JFrame {
         titleInterface();
         btn_confirm_purchase.setEnabled(false);
         btn_confirm_sales.setEnabled(false);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/Icon.png")));
 
         //controlador del Settings
         SettingsController setting = new SettingsController(this);
@@ -294,6 +296,7 @@ public class SystemView extends javax.swing.JFrame {
         txt_suppliers_name = new javax.swing.JTextField();
         txt_suppliers_description = new javax.swing.JTextField();
         cmb_suppliers_city = new javax.swing.JComboBox<>();
+        jlcorreo_supplier = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         suppliers_table = new javax.swing.JTable();
         jLabel29 = new javax.swing.JLabel();
@@ -1577,6 +1580,12 @@ public class SystemView extends javax.swing.JFrame {
         btn_cancel_suppliers.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_cancel_suppliers.setText("Cancelar");
         jPanel23.add(btn_cancel_suppliers, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 230, 110, 30));
+
+        txt_suppliers_email.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_suppliers_emailKeyTyped(evt);
+            }
+        });
         jPanel23.add(txt_suppliers_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 160, 30));
 
         jLabel54.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -1589,8 +1598,12 @@ public class SystemView extends javax.swing.JFrame {
         jPanel23.add(txt_suppliers_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 165, 30));
         jPanel23.add(txt_suppliers_description, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 165, 30));
 
-        cmb_suppliers_city.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione..", "TINGO MARIA", "HUANUCO", "PUCALLPA" }));
+        cmb_suppliers_city.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione..", "TINGO MARIA", "HUANUCO", "PUCALLPA", "Otro ..." }));
         jPanel23.add(cmb_suppliers_city, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 112, 160, 30));
+
+        jlcorreo_supplier.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jlcorreo_supplier.setForeground(new java.awt.Color(204, 0, 0));
+        jPanel23.add(jlcorreo_supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 160, 20));
 
         jPanel22.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 20, 920, 310));
 
@@ -1681,12 +1694,11 @@ public class SystemView extends javax.swing.JFrame {
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel25Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(txt_category_id, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txt_category_id, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel25Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(txt_category_name, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(txt_category_name, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2081,7 +2093,7 @@ public class SystemView extends javax.swing.JFrame {
 
     private void txt_customer_idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_customer_idKeyTyped
         char c = evt.getKeyChar();
-        if ((c >= '0' && c <= '9') && txt_customer_id.getText().length()<=7){
+        if ((c >= '0' && c <= '9') && txt_customer_id.getText().length()<=11){
             
         }else{
             evt.consume();
@@ -2137,7 +2149,11 @@ public class SystemView extends javax.swing.JFrame {
 
     private void txt_suppliers_telephoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_suppliers_telephoneKeyTyped
         char c = evt.getKeyChar();
-        if (c < '0' || c > '9') evt.consume();
+        if ((c >= '0' && c <= '9') && txt_suppliers_telephone.getText().length()<=8){
+            
+        }else{
+            evt.consume();
+        }
     }//GEN-LAST:event_txt_suppliers_telephoneKeyTyped
 
     private void txt_sales_client_dniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_sales_client_dniKeyTyped
@@ -2214,6 +2230,17 @@ public class SystemView extends javax.swing.JFrame {
     private void btn_register_categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_register_categoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_register_categoryActionPerformed
+
+    private void txt_suppliers_emailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_suppliers_emailKeyTyped
+       if(!txt_suppliers_email.getText().contains("@")||!txt_suppliers_email.getText().contains(".")){
+            btn_register_suppliers.setEnabled(false);
+            jlcorreo_supplier.setText("*Correo invalido");
+        }else{
+            btn_register_suppliers.setEnabled(true);
+            jlcorreo_supplier.setText("");
+        }
+       
+    }//GEN-LAST:event_txt_suppliers_emailKeyTyped
 
     /**
      * @param args the command line arguments
@@ -2406,6 +2433,7 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JLabel jlcorreo;
     public javax.swing.JLabel jlcorreo_employee;
+    public javax.swing.JLabel jlcorreo_supplier;
     public javax.swing.JLabel label_name_employee;
     public javax.swing.JLabel label_name_rol;
     public javax.swing.JTable products_table;
