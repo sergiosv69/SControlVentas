@@ -1,6 +1,7 @@
 package views;
 
 import controllers.LoginController;
+import java.awt.Toolkit;
 import models.Employees;
 import models.EmployeesDao;
 
@@ -19,6 +20,7 @@ public class LoginView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.repaint();
         btn_enter.setEnabled(false);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/Icon.png")));
     }
 
     public void ValidarLogin() {

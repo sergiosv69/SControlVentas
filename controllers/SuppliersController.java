@@ -237,12 +237,12 @@ public class SuppliersController implements ActionListener, MouseListener, KeyLi
     public void cleanFields() {
 
         views.txt_suppliers_id.setText("");
-        views.txt_suppliers_id.setEditable(true);
         views.txt_suppliers_name.setText("");
         views.txt_suppliers_description.setText("");
         views.txt_suppliers_address.setText("");
         views.txt_suppliers_telephone.setText("");
         views.txt_suppliers_email.setText("");
+        views.jlcorreo_supplier.setText("");
         views.cmb_suppliers_city.setSelectedIndex(0);
     }
 
